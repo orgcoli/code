@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.blue.blboard.DAO.BoardDAO">
+    <select id="boardAllList" resultType="BoardVO">
+        SELECT * FROM blboard_tbl
+    </select>
+    <insert id="boardInsert">
+        INSERT INTO blboard_tbl (bname, bprice, bamount, btype, breason)
+        VALUES (#{bname}, #{bprice}, #{bamount}, #{btype}, #{breason});
+    </insert>
+    <delete id="boardDelete">
+        DELETE FROM blboard_tbl WHERE bno=#{bno}
+    </delete>
+    <update id="boardUpdate">
+        UPDATE blboard_tbl SET bname=#{bname},
+                               bprice=#{bprice},
+                               bamount=#{bamount},
+                               btype=#{btype},
+                               breason=#{breason} WHERE bno = #{bno}
+    </update>
+    <select id="boardOneList" resultType="BoardVO">
+        SELECT * FROM blboard_tbl WHERE bno = #{bno}
+    </select>
+
+</mapper>
