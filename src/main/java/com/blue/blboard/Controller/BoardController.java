@@ -27,7 +27,7 @@ public class BoardController {
     }
     @GetMapping("/blboard-searchform")
     public ModelAndView searchform(HttpServletRequest request, HttpServletResponse response)throws Exception{
-        logger.info("인덱스 처리");
+        logger.info("검색 페이지 처리");
         ModelAndView mav = new ModelAndView("blboard/searchform");
         return mav;
     }
@@ -92,7 +92,7 @@ public class BoardController {
     }
     @GetMapping("/blboard-search")
     public ModelAndView search(@RequestParam("bname") String bname, HttpServletRequest request, HttpServletResponse response)throws Exception{
-        logger.info("뷰 처리");
+        logger.info("검색 처리");
         List<BoardVO> lists = boardService.boardByName(bname);
         ModelAndView mav = new ModelAndView("/blboard/search");
         mav.addObject("lists", lists);
