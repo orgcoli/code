@@ -12,6 +12,7 @@ public interface BoardDAO {
     public void boardDelete(int bno) throws Exception;
     public void boardUpdate(BoardVO boardVO) throws Exception;
     public BoardVO boardOneList(int bno) throws Exception;
+    public List<BoardVO> boardByName(String bname) throws Exception;
 }
 
 /*<select id="boardAllList" resultType="BoardVO">

@@ -24,5 +24,7 @@
     <select id="boardOneList" resultType="BoardVO">
         SELECT * FROM blboard_tbl WHERE bno = #{bno}
     </select>
-
+    <select id="boardByName" resultType="BoardVO">
+        SELECT * FROM blboard_tbl WHERE bname = #{bname}
+    </select>
 </mapper>

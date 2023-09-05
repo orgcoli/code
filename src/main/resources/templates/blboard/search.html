@@ -10,10 +10,8 @@
 <body>
 
 <div class="container mt-3">
-    <h2>반품 목록</h2>
+    <h2>검색 목록</h2>
     <table class="table table-hover">
-        <button type="button" class="btn btn-primary"
-                th:onclick="|location.href='@{/blboard-insert}'|">등록</button>
         <thead>
         <tr>
             <th>번호</th>
@@ -34,16 +32,19 @@
             <td th:text="${data.bamount}"></td>
             <td th:text="${data.btype}"></td>
             <td><button type="button" class="btn btn-primary"
-                    th:onclick="|location.href='@{/blboard-view(bno=${data.bno})}'|">상세보기</button></td>
+                        th:onclick="|location.href='@{/blboard-view(bno=${data.bno})}'|">상세보기</button></td>
         </tr>
 
         </tbody>
     </table>
-    <div class="row mb-3 mt-3">
-        <div class="col-sm-9"><button type="button" class="btn btn-primary"
-                                      th:onclick="|location.href='@{/}'|">처음으로</button></div>
-    </div>
 </div>
 
+<div class="row mb-3 mt-3">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8"><button type="button" class="btn btn-primary"
+                                  th:onclick="|location.href='@{/blboard-searchform}'|">목록으로</button></div>
+    <div class="col-sm-2"></div>
+</div>
 </body>
+
 </html>

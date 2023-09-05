@@ -38,4 +38,7 @@ public class BoardServiceImpl implements BoardService {
         return boardDAO.boardOneList(bno);
     }
 
+    public List<BoardVO> boardByName(String bname) throws Exception{
+        return boardDAO.boardByName(bname);
+    }
 }
