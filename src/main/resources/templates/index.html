@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <!--로고 및 사이트명-->
+        <a class="navbar-brand" th:href="@{/}">문제은행</a>
+        <!--3선 버튼-->
+        <!--data-bs-toggle 효과, data-bs-target 이동대상-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">   <!--메뉴바-->
+            <ul class="navbar-nav"> <!--메뉴항목-->
+                <li class="nav-item dropdown">  <!--드롭다운 메뉴-->
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">관리자</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/munje-insert}">문제등록</a></li>
+                        <li><a class="dropdown-item" th:href="@{/munje-list}">문제목록</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">  <!--드롭다운 메뉴-->
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">이용자</a>
+                    <ul class="dropdown-menu">
+                        <!--과목선택 후 시험페이지-->
+                        <li><a class="dropdown-item" th:href="@{/munje-select}">시험보기</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-3">
+    <h3>온라인 문제은행</h3>
+    <p>누구나 이용 가능!</p>
+</div>
+
+</body>
+</html>
+
+

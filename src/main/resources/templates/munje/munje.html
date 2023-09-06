@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+        <!--로고 및 사이트명-->
+        <a class="navbar-brand" th:href="@{/}">문제은행</a>
+        <!--3선 버튼-->
+        <!--data-bs-toggle 효과, data-bs-target 이동대상-->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">   <!--메뉴바-->
+            <ul class="navbar-nav"> <!--메뉴항목-->
+                <li class="nav-item dropdown">  <!--드롭다운 메뉴-->
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">관리자</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:href="@{/munje-insert}">문제등록</a></li>
+                        <li><a class="dropdown-item" th:href="@{/munje-list}">문제목록</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">  <!--드롭다운 메뉴-->
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">이용자</a>
+                    <ul class="dropdown-menu">
+                        <!--과목선택 후 시험페이지-->
+                        <li><a class="dropdown-item" th:href="@{/munje-select}">시험보기</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid mt-3">
+    <h3>온라인 문제은행</h3>
+    <div class="row"><!--그리드를 이용해서 폼의 크기를 조절-->
+        <div class="col-sm-2"></div>    <!--왼쪽여백-->
+        <div class="col-sm-8">
+            <!--처음부터 post로 하면 답이 안보이기 때문에 get으로 확인뒤 post로 변경-->
+            <form th:action="@{/munje-result}" method="post">
+                <input type="hidden" name="subject" th:value="${subject}"> <!--해당과목정보-->
+                <!--문제를 출력할 기본 폼-->
+                    <div class="toast show mb-2" th:each="data:${lists}">    <!--문항수 만큼 반복-->
+                        <div class="toast-header">  <!--문제-->
+                            <span th:text="${data.question}">연습문제</span>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                        </div>
+                        <div class="toast-body mb-3">    <!--항목-->
+                            문항1 <span th:text="${data.item1}"></span><br>
+                            문항2 <span th:text="${data.item2}"></span><br>
+                            문항3 <span th:text="${data.item3}"></span><br>
+                            문항4 <span th:text="${data.item4}"></span><br>
+                            <input type="number" name="dap">
+                        </div>
+                    </div>
+                <!--each 밖으로 버튼 만들기 그래야 답이 연속적으로 나옴-->
+                <button type="submit" class="btn btn-primary mt-3 mb-1">답안전송</button>
+            </form>
+        </div>    <!--작업공간-->
+        <div class="col-sm-2"></div>    <!--오른쪽여백-->
+    </div>
+</div>
+
+</body>
+</html>
+
+
