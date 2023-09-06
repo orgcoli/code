@@ -90,6 +90,7 @@ public class BoardController {
         mav.addObject("data",data);
         return mav;
     }
+    //검색 중복처리 <<<<<< munjebank 컨트롤러부분 보고 생각하기
     @GetMapping("/blboard-search")
     public ModelAndView search(@RequestParam("bname") String bname, HttpServletRequest request, HttpServletResponse response)throws Exception{
         logger.info("검색 처리");
