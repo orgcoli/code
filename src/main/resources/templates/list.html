@@ -57,7 +57,11 @@
             <p></p>
             <h5>
                 <span class="badge rounded-pill bg-secondary" style="font-weight: lighter">수강비</span>
-                &nbsp;&nbsp;<span style="font-size: 15px" th:text="${data.money}">1000</span><span style="font-size: 15px">원</span>
+                &nbsp;&nbsp;<span style="font-size: 15px" th:text="${#numbers.formatCurrency(data.money)}">1000</span>
+                <!--화폐단위 numbers.formatCurrency(변수명)-->
+                <!--날짜형식 dates.format(변수명, '날짜형식')-->
+                <!--yy yyyy년도 M MM MMM월 d dd ddd dddd 일, H HH 시 m mm 분 s ss 초-->
+                <!--dates.format(xx, 'yyyy년 mm월 dd일'), dates.format(xx, 'yyyy-MM-dd')-->
             </h5>
             <p></p>
             <p></p>
