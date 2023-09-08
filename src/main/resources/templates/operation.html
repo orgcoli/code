@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
++, -, *, /, % 산술연산자 <br>
+% 나머지 연산, 배수연산 <br>
+1,2,(3),4,5,(6),7,8,(9) %3 == 0 <br><br>
+비교연산자<br>
+관계연산자를 이용해서 연산 <br>
+<!--&gt;(&gt), <(&lt), >=(&ge), <=(&le), ==(&eq), !=(&neq) <br>-->
+조건식 (if문 다르고, java에서 삼항식) <br>
+조건 ? 참:거짓 <br>
+Elvis => 삼항식의 변형 <br>
+조건 ?: 거짓 <br>
+연산식없는 연산 삼항식의 변형(변수에 값이 있느냐 없느냐 판별) <br>
+변수명?:거짓<br>
+<hr>
+<h1>연산</h1>
+<ul>
+    <li>산술연산</li>
+        <ul>
+            <li>10+2 = <span th:text="10+2"></span></li>
+            <li>10%2 = <span th:text="10%2"></span></li>
+        </ul>
+    <li>비교연산</li>
+        <ul>
+            <li>1>10(참, 거짓) = <span th:text="1 > 10"></span></li>
+            <li>1>10 = <span th:text="1 &gt; 10"></span></li>
+            <li>1>10 = <span th:text="1 gt 10"></span></li>
+            <li>1=10 = <span th:text="1 eq 10"></span></li>
+            <li>1=10 = <span th:text="1 == 10"></span></li>
+        </ul>
+    <li>조건식</li>
+        <ul>
+            <li>(10 % 2 ==0)?'짝수':'홀수' = <span th:text="(10%2 ==0)?'짝수':'홀수'"></span></li>
+        </ul>
+    <li>Elvis연산자</li>
+        <ul>
+            <li>${data}?:'데이터가 없습니다.' = <span th:text="${data}?:'데이터가 없습니다.'"></span></li>
+            <li>${nulldata}?:'데이터가 없습니다.' = <span th:text="${nulldata}?:'데이터가 없습니다.'"></span></li>
+        </ul>
+    <li>연산자 없이 연산</li>
+        <ul>
+            <li>${data}?:_ = <span th:text="${data}?:_">데이터가 없습니다.</span></li>
+            <li>${nulldata}?:_ = <span th:text="${nulldata}?:_">데이터가 없습니다.</span></li>
+        </ul>
+</ul>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+정상적으로 동작이 되지 않으면 <br>
+build.gradle에 implementation 'org.thymeleaf.extras:thymeleaf-extras-java8time' 을 <br>
+종속성 추가를 하면 된다. <br>
+<hr>
+상품, 게시글, 자료실, 회원등록 등을 할 때 저장, 수정 등의 시간이 필요할 때<br>
+날짜/시간 컴퓨터 : 2343.234 <br>
+데이터베이스 : 23-10-12 12:45:45 <br>
+
+2023년 9월 8일 1시 20분 30초
+yy - 23, yyyy - 2023 <br>
+M - 9 ,MM - 09, MMM - Sep <br>
+d - 8, dd - 08, ddd - Fri <br>
+H - 1, HH - 01 <br>
+m - 4, mm - 04 <br>
+s - 1, ss - 01 <br><br>
+
+<h1>LocalDateTime</h1>
+<ul>
+    <li>${localDateTime} = <span th:text="${localDateTime}"></span></li>
+    <li>${#temporals.format(localDateTime, 'yyyy-MM-dd HH:mm:ss')} = <span th:text="${#temporals.format(localDateTime, 'yyyy-MM-dd HH:mm:ss')}"></span></li>
+</ul>
+<h1>LocalDateTime</h1>
+<ul>
+    <li>일 ${#temporals.day(localDateTime)} = <span th:text="${#temporals.day(localDateTime)}"></span></li>
+    <li>월 ${#temporals.month(localDateTime)} = <span th:text="${#temporals.month(localDateTime)}"></span></li>
+    <li>월 ${#temporals.monthName(localDateTime)} = <span th:text="${#temporals.monthName(localDateTime)}"></span></li>
+    <li>월 ${#temporals.monthNameShort(localDateTime)} = <span th:text="${#temporals.monthNameShort(localDateTime)}"></span></li>
+    <li>년 ${#temporals.year(localDateTime)} = <span th:text="${#temporals.year(localDateTime)}"></span></li>
+    <li>요일 ${#temporals.dayOfWeek(localDateTime)} = <span th:text="${#temporals.dayOfWeek(localDateTime)}"></span></li>
+    <li>요일 ${#temporals.dayOfWeekName(localDateTime)} = <span th:text="${#temporals.dayOfWeekName(localDateTime)}"></span></li>
+    <li>요일 ${#temporals.dayOfWeekNameShort(localDateTime)} = <span th:text="${#temporals.dayOfWeekNameShort(localDateTime)}"></span></li>
+    <li>시 ${#temporals.hour(localDateTime)} = <span th:text="${#temporals.hour(localDateTime)}"></span></li>
+    <li>시 ${#temporals.minute(localDateTime)} = <span th:text="${#temporals.minute(localDateTime)}"></span></li>
+    <li>시 ${#temporals.second(localDateTime)} = <span th:text="${#temporals.second(localDateTime)}"></span></li>
+</ul>
+
+</body>
+</html>

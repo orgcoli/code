@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+#을 이용해서 서버에 정보를 출력
+request : 클라이언트(서버)가 서버(클라이언트)에 요청(전달)시 정보==>보내는 쪽<br>
+response : 클라이언트(서버)가 서버(클라이언트)로 받았을 때 정보==>받는 쪽<br>
+session : 서버의 정보(서버에 클라이언트 상태)<br>
+<hr>
+<h1>기본 객체들</h1>
+<ul>
+  <li>@{#request} = <span th:text="${#request}"></span></li>
+  <li>@{#response} = <span th:text="${#response}"></span></li>
+  <li>@{#session} = <span th:text="${#session}"></span></li>
+  <li>@{#servletContext} = <span th:text="${#servletContext}"></span></li>
+  <li>@{#locale} = <span th:text="${#locale}"></span></li>
+</ul>
+
+<h1>편의 객체</h1>
+<ul>
+    <li>request parameter = <span th:text="${param.paramData}"></span></li>
+    <li>session data = <span th:text="${#session.getAttribute('sessionData')}"></span></li>
+</ul>
+<br>
+<br>
+session 중요!!<br>
+로그인 / 로그아웃 버튼<br>
+로그인 전이면 메뉴에서 로그인 버튼만 존재 <br>
+로그인 상태이면 메뉴에서 로그아웃버튼만 존재 <br>
+
+로그인을 성공하면 session에 값을 저장하고 <br>
+HTML에서 session에 값이 있으면 로그인 상태
+값이없으면 로그인이 안된 상태
+
+</body>
+</html>

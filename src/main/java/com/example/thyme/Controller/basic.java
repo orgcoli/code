@@ -7,6 +7,10 @@ import org.springframework.stereotype.Controller;   //Controller 어노테이션
 import org.springframework.ui.Model;    //Model 처리
 import org.springframework.web.bind.annotation.*;   //어노테이션 처리
 
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+import java.time.LocalDateTime;
+
 @Controller //servlet을 통해서 매핑처리하여 동작
 public class basic {
     @GetMapping("/text-basic")   //브라우저에서 주소로 접속할 때
@@ -60,6 +64,38 @@ public class basic {
         //HTML에서 ${data}선언해서 사용
         model.addAttribute("data", "Hello <b>World!!</b>");
         return "text-unescaped";
+    }
+
+    //HttpSession 요청한 컴퓨터의 정보를 읽어온다.
+    @GetMapping("/basic-object")
+    public String basicObject(HttpSession session){
+        session.setAttribute("sessionData", "Hello Session");
+        return  "basic-object";
+    }
+
+    @GetMapping("/date")
+    public String date(Model model){
+        //LocalDateTime(현재시스템, 서버).now(현재시간)
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        return "date";
+    }
+
+    @GetMapping("/link")
+    public String link(Model model){
+        model.addAttribute("param1","data1");
+        model.addAttribute("param2","data2");
+
+        return "/link";
+    }
+    //변수에 값이 없으면 오류 발생
+    //null 아무것도 없음, 값없이 오류를 방지하기 위해서 주로 사용
+    //변수 선언시 지정할 값이 없을 떄
+    @GetMapping("/operation")
+    public String operation(Model model){
+        model.addAttribute("data","Spring!!!");
+        model.addAttribute("nulldata", null);
+
+        return "operation";
     }
 }
 
