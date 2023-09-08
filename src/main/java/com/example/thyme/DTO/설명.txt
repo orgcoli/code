@@ -1,0 +1,16 @@
+공용변수만 선언
+
+Entity와 유사
+Entity는 테이블과 연동
+DTO는 변수만 선언해서 Entity에 값을 전달
+
+@Getter
+@Setter
+public class DTO클래스명{
+
+    @NotBlank(message="빈값 일 때 처리메세지")
+    @NotEmpty(message="값이 없을 때 처리메세지")
+    @Email(message="이메일 형식이 아닐 때 처리메세지")
+    @Length(min=최소값, max=최대값, message="자리수가 틀릴 때 처리메세지)
+    private 데이터형 변수명
+}
