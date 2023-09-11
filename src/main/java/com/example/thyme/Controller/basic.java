@@ -2,6 +2,7 @@ package com.example.thyme.Controller;
 
 import com.example.thyme.DTO.ItemDTO;
 import com.example.thyme.DTO.SungjukDTO;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;   //Controller 어노테이션
 import org.springframework.ui.Model;    //Model 처리
@@ -9,7 +10,10 @@ import org.springframework.web.bind.annotation.*;   //어노테이션 처리
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
+import java.sql.Array;
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller //servlet을 통해서 매핑처리하여 동작
 public class basic {
@@ -97,5 +101,53 @@ public class basic {
 
         return "operation";
     }
+
+    @GetMapping("/attribute")
+    public String attribute(){
+        return "attribute";
+    }
+
+    @GetMapping("/each")
+    public String each(Model model){
+        //실질적으로 데이터베이스에서 처리하는 부분
+        //임시로 값을 3개를 저장해서 전달
+        List<User> users =  Arrays.asList(
+                new User("userA", 10),
+                new User("userB", 20),
+                new User("userC", 30)
+
+        );
+        model.addAttribute("users", users);
+        return "each";
+    }
+
+    @GetMapping("/condition")
+    public String condition(Model model){
+        //실질적으로 데이터베이스에서 처리하는 부분
+        //임시로 값을 3개를 저장해서 전달
+        List<User> users =  Arrays.asList(
+                new User("userA", 10),
+                new User("userB", 20),
+                new User("userC", 30)
+
+        );
+        model.addAttribute("users", users);
+        return "condition";
+    }
+    @Data
+    static  class User{
+        private String userName;
+        private int age;
+        public User(String userName, int age){
+            this.userName = userName;
+            this.age = age;
+        }
+    }
+
+    @GetMapping("layout")
+    public String layout(){
+        return "layoutEx";
+    }
+
 }
 
