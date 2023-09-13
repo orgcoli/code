@@ -42,6 +42,7 @@ public class GuestBoardServiceImpl implements GuestBoardService {
             Guestbook entity = result.get();    //읽어온 레코드를 변수에 저장
             entity.changeTitle(guestbookDTO.getTitle());    //수정할 부분만 재저장
             entity.changeContent(guestbookDTO.getContent());
+            entity.changeWriter(guestbookDTO.getWriter());
 
             guestbookRepository.save(entity);   //수정내용을 저장
         }

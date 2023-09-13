@@ -13,36 +13,44 @@ layout:decorate="~{layout/basic}">
         <div class="col">   <!--열-->
             <div class="card"> <!--카드형식-->
                 <div class="card-header">게시글 상세보기</div>
-                <div class="card-body">
+                <div class="card-body"> <!--목록에서 클릭한 내용을 미리보기-->
                     <!--Form 양식을 이용해서 입력폼<input추가>상세보기<input추가>/수정하기-->
                     <!--name은 차후 DTO 설계 후 지정하므로 임시로 지정-->
-                    <form action="#">
+                    <form action="#">   <!--form은 생략 가능-->
                         <div class="mb-3 mt-3">
                             <label class="form-label">번호:</label>
-                            <input type="text" class="form-control"  name="email" readonly>
+                            <input type="text" class="form-control"  name="gno" th:value="${dto.gno}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">제목:</label>
-                            <input type="text" class="form-control"  name="email" readonly>
+                            <input type="text" class="form-control"  name="title" th:value="${dto.title}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">내용:</label>
-                            <textarea class="form-control" name="content" rows="5" style="resize: none" readonly></textarea>
+                            <textarea class="form-control" name="content" rows="5" style="resize: none" readonly>[[${dto.content}]]</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">작성자:</label>
-                            <input type="text" class="form-control" name="email" readonly>
+                            <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">등록일자:</label>
-                            <input type="text" class="form-control" name="email" readonly>
+                            <input type="text" class="form-control" name="regDate"
+                                   th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">수정일자:</label>
-                            <input type="text" class="form-control" name="email" readonly>
+                            <input type="text" class="form-control" name="modDate"
+                                   th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
                         </div>
-                        <button type="submit" class="btn btn-primary">수정하기</button>
-                        <button type="submit" class="btn btn-secondary">목록으로</button>
+                        <a th:href="@{/guestbook/modify(gno=${dto.gno}, page=${requestDTO.page},
+                        type=${requestDTO.type}, keyword=${requestDTO.keyword})}">  <!--현재 정보를 가지고 수정페이지로 이동-->
+                            <button type="button" class="btn btn-primary">수정하기</button>
+                        </a>
+                        <a th:href="@{/guestbook/list(page=${requestDTO.page},
+                           type=${requestDTO.type}, keyword=${requestDTO.keyword})}">     <!--목록페이지로 이동-->
+                            <button type="button" class="btn btn-secondary">목록으로</button>
+                        </a>
                     </form>
                 </div>
             </div>  <!--card-->
@@ -51,3 +59,6 @@ layout:decorate="~{layout/basic}">
 </div>
 </html>
 <!--Controller에서 매핑으로 레이아웃 결과를 확인-->
+<!--브라우저에서 500오류가 발생하면-->
+<!--브라우저 중간부분에서 해당파일에 오류행과 열을 참조해서 수정-->
+<!-- 작업난이도 삽입>미리보기>수정>목록>-->

@@ -56,6 +56,9 @@ public class Guestbook {
     public void changeContent(String content){
         this.content = content;
     }
+    public void changeWriter(String Writer){
+        this.writer = writer;
+    }
     //실행 후 데이터베이스에서 테이블생성을 확인한 후
     //application에서 create를 none으로 변경
     //다음에 Repository를 생성

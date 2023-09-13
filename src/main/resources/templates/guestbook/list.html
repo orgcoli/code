@@ -13,30 +13,30 @@ layout:decorate="~{layout/basic}">
     <!--가입버튼-->
     <h1 class="mt-4">방문록 목록</h1>
     <span>
-                        <a href="#">
-                        <button type="button" class="btn btn-primary">등록하기</button>
-                        </a>
-                    </span>
+        <a th:href="@{/guestbook/register}">    <!--등록페이지로 이동-->
+            <button type="button" class="btn btn-primary">등록하기</button>
+        </a>
+    </span>
     <!--검색기능-->
-    <form action="#" method="get" id="searchForm">
+    <form th:action="@{/guestbook/list}" method="get" id="searchForm">  <!--컨트롤의 guestbook/list연결-->
         <div class="input-group">
             <!--페이지번호-->
-            <input type="hidden" name="page" value="1">
+            <input type="hidden" name="page" value="1"> <!--페이지번호-->
             <!--분류(제목, 내용, 작성자, 제목+내용, 제목+내용+작성자)-->
-            <select class="form-select" name="type">
-                <option> </option>
-                <option value="t">제목</option>
-                <option value="c">내용</option>
-                <option value="w">작성자</option>
-                <option value="tc">제목+내용</option>
-                <option value="tcw">제목+내용+작성자</option>
+            <select class="form-select" name="type">    <!--분류값-->
+                <option th:selected="${pageRequestDTO.type==null}">없음</option>  <!--분류가 없으면 선택-->
+                <option th:selected="${pageRequestDTO.type=='t'}" value="t">제목</option>
+                <option th:selected="${pageRequestDTO.type=='c'}" value="c">내용</option>
+                <option th:selected="${pageRequestDTO.type=='w'}" value="w">작성자</option>
+                <option th:selected="${pageRequestDTO.type=='tc'}" value="tc">제목+내용</option>
+                <option th:selected="${pageRequestDTO.type=='tcw'}" value="tcw">제목+내용+작성자</option>
             </select>
             <!--검색어-->
-            <input class="form-control" name="keyword">
+            <input class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}">
             <!--버튼-->
             <div>
-                <button class="btn btn-outline-secondary btn-search" type="button">검색</button>
-                <button class="btn btn-outline-secondary btn-clear" type="button">지우기</button>
+                <button class="btn btn-outline-secondary btn-search" type="submit">검색</button>
+                <button class="btn btn-outline-secondary btn-clear" type="reset">지우기</button>
             </div>
         </div>
     </form>
@@ -51,21 +51,43 @@ layout:decorate="~{layout/basic}">
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>1</td>
-            <td>연습1</td>
-            <td>작성자1</td>
-            <td>2023/09/12</td>
+        <tr th:each="dto:${result.dtoList}">
+            <td>
+                <a th:href="@{/guestbook/read(gno=${dto.gno}, page=${result.page},
+                type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">
+                    [[${dto.gno}]]
+                </a>
+            </td>     <!--클릭시 상세페이지로 이동-->
+            <td>[[${dto.title}]]</td>
+            <td>[[${dto.writer}]]</td>
+            <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>    <!--날짜형식으로 출력-->
         </tr>
         </tbody>
     </table>
     <!--페이징 처리리, 한페이지 당 10개씩-->
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    <ul class="pagination"> <!--각 항목별로 연결 작성, 해당페이지는 활성화-->
+        <!--이전 페이지가 있으면 나타낸다.-->
+        <li class="page-item" th:if="${result.prev}">
+            <a class="page-link" th:href="@{/guestbook/list(page=${result.start-1},
+            type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">
+                이전
+            </a>
+        </li>
+        <!--페이지 수 만큼 반복처리-->
+        <!--현재페이지와 페이지번호가 같으면 활성화-->
+        <li th:class="'page-item' + ${result.page==page?'active':''}" th:each="page:${result.pageList}"><!--해당페이지 활성화-->
+            <a class="page-link" th:href="@{/guestbook/list(page=${page},
+            type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">  <!--클릭시 해당페이지로 이동-->
+                [[${page}]]
+            </a>
+        </li>
+        <!--이후 페이지가 있으면 나타낸다-->
+        <li class="page-item" th:if="${result.next}">
+            <a class="page-link" th:href="@{/guestbook/list(page=${result.end+1},
+            type=${pageRequestDTO.type}, keyword=${pageRequestDTO.keyword})}">
+                다음
+            </a>
+        </li>
     </ul>
 </div>
 </html>

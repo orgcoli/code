@@ -16,10 +16,10 @@ layout:decorate="~{layout/basic}">
                 <div class="card-body">
                     <!--Form 양식을 이용해서 입력폼/상세보기/수정하기-->
                     <!--name은 차후 DTO 설계 후 지정하므로 임시로 지정-->
-                    <form action="#">
+                    <form th:action="@{/guestbook/register}" method="post">
                         <div class="mb-3 mt-3">
                             <label class="form-label">제목:</label>
-                            <input type="text" class="form-control" placeholder="제목을 입력하세요" name="email">
+                            <input type="text" class="form-control" placeholder="제목을 입력하세요" name="title">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">내용:</label>
@@ -27,7 +27,7 @@ layout:decorate="~{layout/basic}">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">작성자:</label>
-                            <input type="text" class="form-control" placeholder="이름을 입력하세요" name="email">
+                            <input type="text" class="form-control" placeholder="이름을 입력하세요" name="writer">
                         </div>
                         <button type="submit" class="btn btn-primary">등록하기</button>
                     </form>
@@ -38,3 +38,7 @@ layout:decorate="~{layout/basic}">
 </div>
 </html>
 <!--Controller에서 매핑으로 레이아웃 결과를 확인-->
+<!--Post not supported-->
+<!--컨트롤에 매핑할 곳이 없는 경우-->
+<!--Controller에서 PostMapping을 확인-->
+<!--null property 나오는 경우 name 잘 입력헀나 확인하기.-->

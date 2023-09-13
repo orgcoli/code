@@ -29,7 +29,7 @@ public class PageResultDTO<DTO, EN> {
     }
 
     private void makePageList(Pageable pageable){
-        this.page = pageable.getPageSize()+1;   //데이터베이스페이지+1 ==>화면 페이지 번호
+        this.page = pageable.getPageNumber()+1;   //데이터베이스페이지+1 ==>화면 페이지 번호 size가 아닌 number
         this.size = pageable.getPageSize();
 
         int tempEnd = (int)(Math.ceil(page/10.0)*10);   //끝 페이지 번호
