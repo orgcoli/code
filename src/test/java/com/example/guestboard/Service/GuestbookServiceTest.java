@@ -21,7 +21,8 @@ public class GuestbookServiceTest {
                 .content("테스트 내용")
                 .writer("테스터")
                 .build();
-
+                                    //컨트롤러에게 받아온값             컨트롤러에 전달할 값
+        //guestBoardService.register(GuestbookDTO guestbookDTO)     Long
         System.out.println(guestBoardService.register(guestbookDTO));
    }
 

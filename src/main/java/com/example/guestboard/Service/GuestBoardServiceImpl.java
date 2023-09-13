@@ -22,6 +22,7 @@ import java.util.function.Function;
 @Log4j2     //로그 작업
 @RequiredArgsConstructor    //사용할 Repository를 자동 주입, 컨트롤에서도 반드시 선언
 public class GuestBoardServiceImpl implements GuestBoardService {
+    //Repository를 반드시 선언
     private final GuestbookRepository guestbookRepository;  //주작업대상
 
     //Ctrl-I를 눌러서 인터페이스의 메소드를 추가
