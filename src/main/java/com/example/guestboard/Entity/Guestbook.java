@@ -56,7 +56,7 @@ public class Guestbook {
     public void changeContent(String content){
         this.content = content;
     }
-    public void changeWriter(String Writer){
+    public void changeWriter(String writer){
         this.writer = writer;
     }
     //실행 후 데이터베이스에서 테이블생성을 확인한 후
