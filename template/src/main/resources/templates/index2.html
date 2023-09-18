@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--변경되는 본문 파일에서 사용할 레이아웃 지정하면 해당 레이아웃에 적용-->
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/layout2}">
+<!--layout:decorate=""에서 적용할 레이아웃을 지정-->
+<!--$ 변수, * 선택(오브젝트에서 필드만), @링크, # 메세지, ~ 조각파일-->
+<!--layout에 있는 내용은 생략... 중복시 페이지가 깨지는 현상-->
+<body>
+    <div layout:fragment="content"> <!--레이아웃에 사용할 조각이름을 지정-->
+        목록처리<br>
+        입력/수정폼<br>
+        삭제, 상품등록, 상세보기 등 전반적인 작업을 작성 <br>
+    </div>
+</body>
+</html>

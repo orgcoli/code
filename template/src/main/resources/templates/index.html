@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/basic}">
+<!--layout:decorate= 사용할 레이아웃을 지정-->
+<!--head, body, 모두 생략 div 본문선언-->
+
+<!--basic.html 레이아웃에 content부분에 들어가는 부분-->
+<div layout:fragment="content">
+    이곳에 basic 레이아웃에서 본문에 해당하는 부분에 <br>
+    나타나는 영역입니다.
+</div>
+
+</html>

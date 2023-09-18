@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--머리글-->
+<h3>헤더부분</h3>
+<!--본문-->
+<div layout:fragment="content"></div>   <!--content로 선언된 fragment가 배치되는 위치-->
+<!--꼬리글-->
+<h3>푸터부분</h3>
+<!--스크립트-->
+<th:block layout:fragment="script"></th:block>  <!--script로 선언된 fragment가 배치되는 위치-->
+</body>
+</html>
