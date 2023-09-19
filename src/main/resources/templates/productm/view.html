@@ -36,8 +36,7 @@
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="regdate" class="form-label">등록일자:</label>
-                    <input type="text" class="form-control" id="regdate" name="regdate" th:value="${#temporals.format(data.regdate, 'yyyy/MM/dd HH:mm:ss')}"
-                           readonly>
+                    <input type="text" class="form-control" id="regdate" name="regdate" th:value="${#temporals.format(data.regdate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
                 </div>
                 <a th:href="@{/productm-update(pno=${data.pno})}">
                     <button type="button" class="btn btn-primary">수정</button>

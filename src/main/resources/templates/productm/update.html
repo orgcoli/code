@@ -11,7 +11,7 @@
             <form th:action="@{/productm-update}" method="post">
                 <div class="mb-3 mt-3">
                     <label for="pno" class="form-label">상품번호:</label>
-                    <input type="number" class="form-control" id="pno" name="pno" th:value="${data.pno}">
+                    <input type="number" class="form-control" id="pno" name="pno" th:value="${data.pno}" readonly>
                 </div>
                 <div class="mb-3 mt-3">
                     <label for="pname" class="form-label">상품이름:</label>
@@ -30,9 +30,9 @@
                     <input type="text" class="form-control" id="pamount" name="pamount" th:value="${data.pamount}">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label for="regdate" class="form-label">등록일자:</label>
-                    <input type="text" class="form-control" id="regdate" name="regdate" th:value="${#temporals.format(data.regdate, 'yyyy/MM/dd HH:mm:ss')}"
-                           readonly>
+                    <label class="form-label">등록일자:</label>
+                    <input type="text" class="form-control" name="regdate" disabled
+                           th:value="${#temporals.format(data.regdate, 'yyyy/MM/dd HH:mm:ss')}">
                 </div>
 
                 <button type="submit" class="btn btn-primary">수정</button>
