@@ -30,8 +30,8 @@
                     <input type="text" class="form-control" id="pamount" name="pamount" th:value="${data.pamount}">
                 </div>
                 <div class="mb-3 mt-3">
-                    <label class="form-label">등록일자:</label>
-                    <input type="text" class="form-control" name="regdate" disabled
+                    <label for="regdate" class="form-label">등록일자:</label>
+                    <input type="text" class="form-control" name="regdate" id="regdate" disabled
                            th:value="${#temporals.format(data.regdate, 'yyyy/MM/dd HH:mm:ss')}">
                 </div>
 
