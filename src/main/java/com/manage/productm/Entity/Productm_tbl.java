@@ -2,6 +2,7 @@ package com.manage.productm.Entity;
 
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EnableJpaRepositories  //날짜 수정 등록
+@EntityListeners(AuditingEntityListener.class)  //Entity 처리시 날짜처리
 public class Productm_tbl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

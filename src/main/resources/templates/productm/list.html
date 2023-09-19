@@ -29,7 +29,7 @@ layout:decorate="~{layout/layout}">
                 <td>[[${data.pname}]]</td>
                 <td>[[${data.pprice}]]</td>
                 <td>[[${data.pamount}]]</td>
-                <td>[[${data.regdate}]]</td>
+                <td>[[${#temporals.format(data.regdate, 'yyyy/MM/dd')}]]</td>
             </tr>
             </tbody>
         </table>
