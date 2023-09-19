@@ -46,7 +46,7 @@ public class ProductmService {
                 productmDTO.getPprice(), productmDTO.getPamount());
         productmRepository.save(update);
     }
-    public void delete(long num) throws Exception{
-        productmRepository.deleteById(num);
+    public void delete(long pno) throws Exception{
+        productmRepository.deleteById(pno);
     }
 }
