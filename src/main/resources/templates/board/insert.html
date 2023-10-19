@@ -17,6 +17,8 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4"><!--게시글 등록 시작-->
             <!--action=>처리(post), a href=>폼(get) -->
+            <!--$object(객체읽어서)->*field(변수) *{}=> field 사용-->
+            <!--객체를 사용하지 않으면 ${객체명.변수} => value, text, [[]] 사용-->
             <form action="/boardinsert" method="post" th:object="${boardDTO}"> <!--DTO 선언된 변수를 이용해서 name명을 지정-->
                 <div class="container mt-3">
                     <h2>게시물 등록</h2>
@@ -25,6 +27,8 @@
                         <label for="subject" class="form-label">제목:</label>
                         <input type="text" class="form-control" id="subject" th:field="*{subject}" placeholder="게시물 제목을 입력하세요" name="subject">
                     </div>
+                    <!--if문은 조건이 맞으면 해당태그가 활성화, 맞지 않으면 태그가 비활성화-->
+                    <!--errors(변수와 함께 전달된 message)= value(변수), text(변수)-->
                     <p class="text-danger" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>
                     <div class="mb-3">
                         <label for="content" class="form-label">내용:</label>

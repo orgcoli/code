@@ -24,7 +24,8 @@
                             <tbody>
                             <tr>
                                 <td>번호:</td>
-                                <td>[[${boardDTO.id}]]</td>
+                                <!--<td text="${boardDTO.id}">12</td> 임의값 기본출력, 값을 받으면 대체-->
+                                <td>[[${boardDTO.id}]]</td> <!--값을 받으면 대체, 없으면 명령출력-->
                             </tr>
                             <tr>
                                 <td>제목:</td>
@@ -46,6 +47,7 @@
                         </table>
                     </div>
                     <div class="card-footer">   <!--버튼-->
+                        <!--|있는 그대로 출력| 문자열과 변수를 섞어서 사용할 때-->
                         <button type="button" class="btn btn-primary"
                                 th:onclick="|location.href='@{/boardupdate(id=${boardDTO.id})}'|">수정</button>
                         <button type="button" class="btn btn-secondary"

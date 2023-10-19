@@ -21,7 +21,11 @@
                 <div class="container mt-3">
                     <h2>게시물 수정</h2>
                     <p>내용을 입력하세요.</p>
+                    <!--목록(번호)->해당자료 선택->상세페이지(번호)->해당자료->수정(번호)-->
                     <div class="mb-3 mt-3">
+                        <!--필요 없거나 중요하면 type="hidden"사용함-->
+                        <!--표현해야하면 readonly 필수-->
+                        <!--반드시 Form내에 숨기든, 읽기용이든 선언 필수-->
                         <label for="id" class="form-label">번호:</label>
                         <input type="number" class="form-control" id="id" th:field="*{id}" name="id" readonly>
                     </div>

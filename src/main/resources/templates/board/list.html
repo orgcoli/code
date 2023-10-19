@@ -32,6 +32,7 @@
                         <tbody>
                         <tr th:each="data:${lists}">    <!--반복적인 게시물 출력-->
                             <td>[[${data.id}]]</td>
+                            <!--주소지정 주소?변수=값,... th: 주소지정@{주소(변수-값...)}-->
                             <td><a th:href="@{/boarddetail(id=${data.id})}">[[${data.subject}]]</a></td>    <!--상세페이지로 이동-->
                             <td>[[${data.username}]]</td>
                             <td>[[${data.grade}]]</td>
