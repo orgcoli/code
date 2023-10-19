@@ -40,7 +40,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="grade" class="form-label">평점:</label>
-                        <select class="form-select" id="grade" name="grade">
+                        <select class="form-select" th:field="*{grade}" id="grade" name="grade">
                             <option value="1">너무 싫어요 (1점)</option>
                             <option value="2">싫어요 (2점)</option>
                             <option value="3">보통 (3점)</option>
