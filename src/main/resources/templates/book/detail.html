@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/booklayout}">
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header bg-dark text-white"><h2>책 세부내용</h2></div>
+                        <div class="card-body">
+                            <p>서적번호 : 1</p>
+                            <p>분류코드 : 2</p>
+                            <p>책제목 : 샘플</p>
+                            <p>책정보 : 정보</p>
+                            <p>저자 : 실험맨</p>
+                            <p>출판사 : 실험</p>
+                            <p>발매일 : 2023-10-20</p>
+                            <p>가격 : 10000</p>
+                            <p>등록일자 : 2023-10-20</p>
+                            <p>수정일자 : 2023-10-20</p>
+                        </div>
+                        <div class="card-footer bg-dark">
+                            <button type="button" class="btn btn-secondary" onclick="location.href='/book-update'">수정</button>
+                            <button type="button" class="btn btn-danger" onclick="location.href='/book-delete'">삭제</button>
+                            <button type="button" class="btn btn-success" onclick="location.href='/book-list'">뒤로가기</button>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/booklayout}">
+
+<body>
+
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>책 목록</h2>
+        <table class="table table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>번호</th>
+                <th>분류코드</th>
+                <th>제목</th>
+                <th>저자</th>
+                <th>가격</th>
+                <th>상세보기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>컴퓨터</td>
+                <td>sample</td>
+                <td>샘플맨</td>
+                <td>5000</td>
+                <td>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/book-detail'">상세보기</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
