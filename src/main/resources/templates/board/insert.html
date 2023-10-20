@@ -18,7 +18,6 @@
         <div class="col-lg-4"><!--게시글 등록 시작-->
             <!--action=>처리(post), a href=>폼(get) -->
             <!--$object(객체읽어서)->*field(변수) *{}=> field 사용-->
-            <!--객체를 사용하지 않으면 ${객체명.변수} => value, text, [[]] 사용-->
             <form action="/boardinsert" method="post" th:object="${boardDTO}"> <!--DTO 선언된 변수를 이용해서 name명을 지정-->
                 <div class="container mt-3">
                     <h2>게시물 등록</h2>
@@ -36,7 +35,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="grade" class="form-label">평점:</label>
-                        <select class="form-select" id="grade" name="grade">
+                        <select class="form-select" id="grade" th:field="*{grade}" name="grade">
                             <option value="1">너무 싫어요 (1점)</option>
                             <option value="2">싫어요 (2점)</option>
                             <option value="3">보통 (3점)</option>
