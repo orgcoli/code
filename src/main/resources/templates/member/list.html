@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--모든 작업페이지에서 공통으로 사용할 틀-->
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/memberlayout}">
+<head>
+    <title>CRUD 구현</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content"> <!--작업영역-->
+    <div class="row">   <!--외곽틀-->
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">  <!--게시판 위치 시작-->
+            <div class="container mt-3">    <!--게시판 영역 시작-->
+                <h2>회원목록</h2>
+                <p>등록된 회원들입니다.</p>
+                <table class="table table-hover">
+                    <thead> <!--제목-->
+                    <tr>
+                        <th>번호</th>
+                        <th>회원이름</th>
+                        <th>아이디</th>
+                        <th>이메일</th>
+                        <th>전화번호</th>
+                        <th>등록일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--data를 이용, memberDTOList 받은값-->
+                    <tr th:each="data:${lists}"> <!--lists-->
+                        <td th:text="${data.id}">1</td>
+                        <td><a th:text="${data.username}" th:href="@{/memberdetail(id=${data.id})}">홍길동</a></td>
+                        <td th:text="${data.userid}"></td>
+                        <td th:text="${data.useremail}">sample@naver.com</td>
+                        <td th:text="${data.usertel}">010-123-1324</td>
+                        <td th:text="${data.createDate}">2023-07-01</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div> <!--게시판 영역 끝-->
+
+        </div> <!--게시판 위치 끝-->
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</body>
+</html>
+<!--Controller에서 매핑처리-->
