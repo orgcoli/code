@@ -5,6 +5,11 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
+/*@SequenceGenerator(
+        name = "BOOK_SEQ_GENERATOR",
+        sequenceName = "BOOK_SEQ",
+        initialValue = 1,
+        allocationSize = 1)*/
 @Getter
 @Setter
 @ToString
@@ -12,11 +17,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 
+
 @Table(name = "book_tbl")
 public class BookEntity extends BaseEntity{
     @Id
     @Column(name = "bid")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //generator = "BOOK_SEQ_GENERATOR" 시퀀스 사용시
     private Long bid;
 
     @Column(name = "bcode", nullable = false)

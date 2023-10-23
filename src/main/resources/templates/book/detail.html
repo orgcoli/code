@@ -15,20 +15,25 @@
                     <div class="card">
                         <div class="card-header bg-dark text-white"><h2>책 세부내용</h2></div>
                         <div class="card-body">
-                            <p>서적번호 : 1</p>
-                            <p>분류코드 : 2</p>
-                            <p>책제목 : 샘플</p>
-                            <p>책정보 : 정보</p>
-                            <p>저자 : 실험맨</p>
-                            <p>출판사 : 실험</p>
-                            <p>발매일 : 2023-10-20</p>
-                            <p>가격 : 10000</p>
-                            <p>등록일자 : 2023-10-20</p>
-                            <p>수정일자 : 2023-10-20</p>
+                            <p>서적번호 : [[${list.bid}]]</p>
+                            <p>분류코드 : [[${   list.bcode == 1 ? '교양':
+                                                list.bcode == 2 ? '컴퓨터':
+                                                list.bcode == 3 ? '소설':
+                                                list.bcode == 4 ? '어학' : null}]] : [[${list.bcode}]]</p>
+                            <p>책제목 : [[${list.bsub}]]</p>
+                            <p>책정보 : [[${list.binfo}]]</p>
+                            <p>저자 : [[${list.bwriter}]]</p>
+                            <p>출판사 : [[${list.bcom}]]</p>
+                            <p>발매일 : [[${list.brel}]]</p>
+                            <p>가격 : [[${list.bprice}]]</p>
+                            <p>등록일자 : [[${#temporals.format(list.createdDate,'yyyy-MM-dd HH:mm:ss')}]]</p>
+                            <p>수정일자 : [[${#temporals.format(list.modifiedDate,'yyyy-MM-dd HH:mm:ss')}]]</p>
                         </div>
                         <div class="card-footer bg-dark">
-                            <button type="button" class="btn btn-secondary" onclick="location.href='/book-update'">수정</button>
-                            <button type="button" class="btn btn-danger" onclick="location.href='/book-delete'">삭제</button>
+                            <button type="button" class="btn btn-secondary"
+                                    th:onclick="|location.href='@{/book-update(bid=${list.bid})}'|">수정</button>
+                            <button type="button" class="btn btn-danger"
+                                    th:onclick="|location.href='@{/book-delete(bid=${list.bid})}'|">삭제</button>
                             <button type="button" class="btn btn-success" onclick="location.href='/book-list'">뒤로가기</button>
                         </div>
                     </div>

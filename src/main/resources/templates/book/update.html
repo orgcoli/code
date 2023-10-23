@@ -12,21 +12,25 @@
         <div class="row">
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-                <form action="/book-update" method="post">
+                <form action="/book-update" method="post" th:object="${bookDTO}">
                     <div class="card">
                         <div class="card-header bg-dark text-white"><h2>책 수정하기</h2></div>
                         <div class="card-body">
+                            <input type="hidden" name="bid" th:field="*{bid}">
                             <div class="container mb-3 mt-3">
-                                <label for="bsub" class="form-label">제목:</label>
-                                <input type="text" class="form-control" id="bsub" name="bsub">
+                                <label for="bsub" class="form-label">제목:
+                                    <span class="text-bg-danger"
+                                          th:if="${#fields.hasErrors('bsub')}" th:errors="*{bsub}"></span>
+                                </label>
+                                <input type="text" class="form-control" id="bsub" name="bsub" th:field="*{bsub}">
                             </div>
                             <div class="container mb-3">
                                 <label for="binfo" class="form-label">정보:</label>
-                                <textarea name="binfo" id="binfo" rows="5" class="form-control"></textarea>
+                                <textarea name="binfo" id="binfo" rows="5" class="form-control" th:field="*{binfo}"></textarea>
                             </div>
                             <div class="container mb-3">
                                 <label for="bcode" class="form-label">분류코드:</label>
-                                <select class="form-select" id="bcode" name="bcode">
+                                <select class="form-select" id="bcode" name="bcode" th:field="*{bcode}">
                                     <option value="1">교양</option>
                                     <option value="2">컴퓨터</option>
                                     <option value="3">소설</option>
@@ -34,24 +38,33 @@
                                 </select>
                             </div>
                             <div class="container mb-3">
-                                <label for="brel" class="form-label">발매일:</label>
-                                <input type="text" class="form-control" id="brel" name="brel">
+                                <label for="brel" class="form-label">발매일:
+                                    <span class="text-bg-danger"
+                                          th:if="${#fields.hasErrors('brel')}" th:errors="*{brel}"></span>
+                                </label>
+                                <input type="text" class="form-control" id="brel" name="brel" th:field="*{brel}">
                             </div>
                             <div class="container mb-3">
                                 <label for="bprice" class="form-label">가격:</label>
-                                <input type="text" class="form-control" id="bprice" name="bprice">
+                                <input type="text" class="form-control" id="bprice" name="bprice" th:field="*{bprice}">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="container mb-3">
-                                        <label for="bwriter" class="form-label">저자:</label>
-                                        <input type="text" class="form-control" id="bwriter" name="bwriter">
+                                        <label for="bwriter" class="form-label">저자:
+                                            <span class="text-bg-danger"
+                                                  th:if="${#fields.hasErrors('bwriter')}" th:errors="*{bwriter}"></span>
+                                        </label>
+                                        <input type="text" class="form-control" id="bwriter" name="bwriter" th:field="*{bwriter}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="container mb-3">
-                                        <label for="bcom" class="form-label">출판사:</label>
-                                        <input type="text" class="form-control" id="bcom" name="bcom">
+                                        <label for="bcom" class="form-label">출판사:
+                                            <span class="text-bg-danger"
+                                                  th:if="${#fields.hasErrors('bcom')}" th:errors="*{bcom}"></span>
+                                        </label>
+                                        <input type="text" class="form-control" id="bcom" name="bcom" th:field="*{bcom}">
                                     </div>
                                 </div>
                             </div>
