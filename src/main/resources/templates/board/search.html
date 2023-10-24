@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/boardlayout}">
+<head>
+    <title>jpauses</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<div layout:fragment="content">
+    <form action="/selectlist" method="post">
+        <div class="mb-3 mt-3">
+            <label for="search" class="form-label">검색:</label>
+            <input type="text" class="form-control" id="search" name="search">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>
+<!--서버에서 실행해서 레이아웃 적용을 확인(Controller 맵핑)-->
