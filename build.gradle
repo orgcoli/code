@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '2.7.17'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+//라이브러리 추가되는 부분(종속성) - 외부 라이브러리 보관
+//Tomcat은 lib 폴더에 복사해서 사용
+dependencies {
+    //JPA(SQL처리)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //타임리프(HTML에서 EL(변수)처리)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    //검증(DTO에서 유효성 검사)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    //웹(스프링부트를 이용한 웹개발)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    //룸북(DTO에서 Getter와 Setter를 자동화)
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    //유틸리티(스프링부트에서 제공하는 유틸리티)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    //데이터베이스(사용할 데이터베이스 서버)
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    //톰캣(자바를 웹에서 구동하게 하는 서버)
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    //레이아웃(타임리프 파일을 분리시켜 통일된 틀)
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    //맵퍼(DTO와 Entity 사이에 변환)
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+    //테스트(스프링부트로 개발된 프로그램을 단위 테스트)
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    //테스트 진행에 필요한 추가
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+//원시프로그램(사용자 작성 java)-->컴파일--->목적프로그램(기계어.jar(war))--톰캣-->실행
+//AWS에 배포하는 파일은 (jar, war)만 복사해서 사용
+//implementation : 추가(종속성), runtimeOnly(실행시 동작)
+//developmentOnly : 개발시 적용, provideRuntime : 실행전 적용
+//CompileOnly : 번역시 적용
+tasks.named('test') {
+    useJUnitPlatform()
+}

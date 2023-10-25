@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--페이지 틀-->
+<!--EL을 대체할 타임리프, 틀을 만들 layout을 지정-->
+<html lang="en"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>paging</title>   <!--부트스트랩 CSS, javascript 지정-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!--replace, fragment를 이용해서 각 내용이 들어갈 위치를 지정-->
+    <!--head에 사용할 특정한 태그가 없어서 가상태그 block으로 위치 지정-->
+    <th:block layout:fragment="script"></th:block>  <!--적용-->
+    <th:block layout:fragment="css"></th:block>     <!--적용-->
+</head>
+<body>
+    <!--div 영역 구분 태그 모든 작업의 영역을 구분할 때 사용-->
+    <div th:replace="~{fragments/header::header}"></div>    <!--추가-->
+    <!--공통내용을 그냥 적용-->
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>게시판에 검색 및 페이징 처리</h1>
+        <p>게시판 목록에 검색 기능과 페이징 처리 기능을 구현한 예시</p>
+    </div>
+    <div layout:fragment="content"></div>   <!--적용-->
+    <div th:replace="~{fragments/footer::footer}"></div>    <!--추가-->
+</body>
+
+</html>
