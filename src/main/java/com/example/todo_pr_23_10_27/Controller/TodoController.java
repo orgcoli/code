@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class TodoController {
@@ -20,6 +22,7 @@ public class TodoController {
     @GetMapping({"/","/todo-list"})
     public String list(@PageableDefault(page = 1)Pageable page, Model model) throws Exception{
         Page<TodoDTO> todoDTOS = todoService.list(page);
+        List<TodoDTO> listsDesc = todoService.listLtermDesc();
 
         int blockLimit = 5;
         int startPage= (((int)(Math.ceil((double)page.getPageNumber()/blockLimit)))-1) * blockLimit+1;
@@ -28,6 +31,7 @@ public class TodoController {
         model.addAttribute("startPage",startPage);
         model.addAttribute("endPage",endPage);
         model.addAttribute("lists",todoDTOS);
+        model.addAttribute("dLists",listsDesc);
 
         return "todo/list";
     }

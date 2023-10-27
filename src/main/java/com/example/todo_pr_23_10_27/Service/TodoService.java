@@ -12,6 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -68,5 +70,12 @@ public class TodoService {
         //나중에 필요시 mod, reg date 추가하기
 
         return todoDTOS;
+    }
+
+    public List<TodoDTO> listLtermDesc()throws Exception{
+        List<TodoEntity> list = todoRepository.findAllByOrderByLtermAsc();
+        List<TodoDTO> result = Arrays.asList(modelMapper.map(list, TodoDTO[].class));
+
+        return result;
     }
 }
