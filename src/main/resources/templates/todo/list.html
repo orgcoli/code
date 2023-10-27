@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <div class="row mt-4">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+
+            <div class="container">    <!--container 시작-->
+                <!--제목-->
+                <!--제목 끝-->
+
+                <!--버튼시작-->
+                <div style="text-align: right">
+                    <button type="button" class="btn btn-dark  mt-3 mb-1" style="width: 350px"
+                            onclick="location.href='/todo-insert'">TODO 추가</button>
+                </div>
+                <!--버튼 끝-->
+
+                <!--카드시작-->
+                <div class="card border-dark mb-3" th:each="data:${lists}">
+                    <div class="card-header bg-white">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-check">
+                                    <input type="hidden" name="lid">
+                                    <input type="hidden" name="page">
+                                    <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something">
+                                    <span style="font-weight: bold; font-size: large" th:text="${data.ltitle}">세탁소 가기</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                시작일 : [[${data.fterm}]]
+                            </div>
+                            <div class="col-lg-2">
+                                마감일 : [[${data.lterm}]]
+                            </div>
+                            <div class="col-lg-2">
+                                중요도:
+                                <span th:if="${data.limpt==1}" class="badge rounded-pill bg-info text-white" style="font-weight: bolder">Low</span>
+                                <span th:if="${data.limpt==2}" class="badge rounded-pill bg-warning text-dark" style="font-weight: bolder">Medium</span>
+                                <span th:if="${data.limpt==3}" class="badge rounded-pill bg-danger text-white" style="font-weight: bolder">High</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p th:text="${data.lcontent}">크린토피아 드라이클리닝 맡긴 셔츠 찾기.</p>
+                        <button type="button" class="btn btn-primary bg-white text-primary"
+                                th:onclick="|location.href='@{/todo-update(lid=${data.lid}, page=${lists.number+1})}'|">수정</button>
+                        <button type="button" class="btn btn-secondary bg-white text-secondary"
+                                th:onclick="|location.href='@{/todo-delete(lid=${data.lid})}'|">삭제</button>
+                    </div>
+                </div>
+                <!--카드 끝-->
+            </div>  <!--container 끝-->
+
+            <!--페이지 시작-->
+            <ul class="pagination">
+                <ul class="pagination mt-3" style="margin: 0 auto">
+                    <li class="page-item"><a class="page-link" th:href="@{/todo-list(page=1)}">처음</a></li>
+                    <li class="page-item" th:unless="${lists.number+1==1}"><a class="page-link" th:href="@{/todo-list(page=${lists.number})}">이전</a></li>
+                    <span th:each="page:${#numbers.sequence(startPage, endPage)}">
+                        <li class="page-item" th:unless="${page == lists.number+1}">
+                            <a class="page-link" th:href="@{/todo-list(page=${page})}">[[${page}]]</a>
+                        </li>
+                        <li class="page-item active" th:if="${page == lists.number+1}">
+                            <a class="page-link" href="#">[[${page}]]</a>
+                        </li>
+                    </span>
+                    <li class="page-item" th:unless="${lists.number+1==lists.totalPages}">
+                        <a class="page-link" th:href="@{/todo-list(page=${lists.number+2})}">다음</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" th:href="@{/todo-list(page=${lists.totalPages})}">끝</a></li>
+                </ul>
+            </ul>
+            <!--페이지 끝-->
+
+
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+</div>
+
+
+</html>
