@@ -23,6 +23,22 @@
             <div class="text-end mt-3">
                 <button type="button" class="btn btn-primary"
                 th:onclick="|location.href='@{/discussion/register}'|">토론주제 등록</button>
+
+                <form th:action="@{/discussion/list}" method="get">
+                    <div class="row mt-2">
+                        <div class="col-lg-10"></div>
+                        <div class="col-lg-2">
+                            <select class="form-select" name="type">
+                                <option>-----</option>
+                                <option value="v">조회수</option>
+                                <option value="s">이름</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary">조회</button>
+                        </div>
+                    </div>
+
+
+                </form>
             </div>
             <!--등록끝-->
             <!--목록-->
@@ -56,16 +72,16 @@
             <ul class="pagination">
                 <!--startPage가 1번 페이지가 아니면 나타낸다-->
                 <li class="page-item" th:unless="${currentPage==1}">
-                    <a class="page-link" th:href="@{/discussion/list(page=1)}">첫페이지</a>
+                    <a class="page-link" th:href="@{/discussion/list(page=1, type=${type})}">첫페이지</a>
                 </li>
 
                 <li class="page-item" th:unless="${currentPage==1}">  <!--이전페이지 이동-->
-                    <a class="page-link" th:href="@{/discussion/list(page=${prevPage})}">이전</a>
+                    <a class="page-link" th:href="@{/discussion/list(page=${prevPage}, type=${type})}">이전</a>
                 </li>
 
                 <span th:each="page:${#numbers.sequence(startPage, endPage)}">
                     <li class="page-item" th:unless="${page==currentPage}"> <!--현재페이지가 아니면-->
-                        <a class="page-link" th:href="@{/discussion/list(page=${page})}">[[${page}]]</a>
+                        <a class="page-link" th:href="@{/discussion/list(page=${page}, type=${type})}">[[${page}]]</a>
                     </li>
                     <li class="page-item active" th:if="${page==currentPage}"> <!--현재페이지 이면-->
                         <a class="page-link" href="#">[[${page}]]</a>
@@ -73,11 +89,11 @@
                 </span>
 
                 <li class="page-item" th:unless="${currentPage==lastPage}">  <!--다음페이지 이동-->
-                    <a class="page-link" th:href="@{/discussion/list(page=${nextPage})}">다음</a>
+                    <a class="page-link" th:href="@{/discussion/list(page=${nextPage}, type=${type})}">다음</a>
                 </li>
 
                 <li class="page-item" th:unless="${currentPage==lastPage}">
-                    <a class="page-link" th:href="@{/discussion/list(page=${lastPage})}">끝페이지</a>
+                    <a class="page-link" th:href="@{/discussion/list(page=${lastPage}, type=${type})}">끝페이지</a>
                 </li>
             </ul>
 

@@ -63,7 +63,7 @@ public class DiscussionService {
     }
     //전체조회
     //페이지정보를 이용해서 해당페이지로 부터 10개의 데이터를 읽어서 전달
-    public Page<DiscussionDTO> list(Pageable pageable) throws Exception{
+    public Page<DiscussionDTO> list(String type, Pageable pageable) throws Exception{
         //화면페이지번호(1,2,3,4....) 데이터베이스 페이지 번호(0,1,2,3,4....)
         //화면에서 페이지번호를 데이터베이스 페이지번호 계산
         int curPage = pageable.getPageNumber()-1;
@@ -72,13 +72,21 @@ public class DiscussionService {
         //계산된 정보를 이용해서 새로운 페이지 정보를 만든다.
         //(현재페이지, 개수, 정렬(오름/내림차순, 필드명))
         Pageable newPage = PageRequest.of(curPage, pageLimit, Sort.by(Sort.Direction.DESC, "id"));
+        Page<DiscussionEntity> discussionEntities;
+
+        if(type.equals("v")){
+            discussionEntities = discussionRepository.findAllByOrderByViewcntDesc(newPage);
+        }else if(type.equals("s")){
+            discussionEntities = discussionRepository.findAllByOrderBySubjectAsc(newPage);
+        }else{
+            discussionEntities = discussionRepository.findAll(newPage);
+        }
 
         //페이지정보로 조회
-        Page<DiscussionEntity> disscusionEntities = discussionRepository.findAll(newPage);
 
         //Entity를 DTO로 변환(Mapper X, 하나씩 읽어서 하나씩 DTO에 저장)
         //Entity.map(별칭-> 변환할 DTO
-        Page<DiscussionDTO> disscussionDTOS = disscusionEntities.map(data-> DiscussionDTO.builder()
+        Page<DiscussionDTO> disscussionDTOS = discussionEntities.map(data-> DiscussionDTO.builder()
                 .id(data.getId())
                 .subject(data.getSubject())
                 .viewcnt(data.getViewcnt())

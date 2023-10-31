@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -24,8 +25,9 @@ public class DiscussionController {
     private final OpinionService opinionService;
 
     @GetMapping("/discussion/list") //목록
-    public String listForm(@PageableDefault(page=1) Pageable pageable, Model model) throws Exception{
-        Page<DiscussionDTO> disscussionDTOS = discussionService.list(pageable);
+    public String listForm(@PageableDefault(page=1) Pageable pageable, Model model,
+                           @RequestParam(value = "type", defaultValue = "") String type) throws Exception{
+        Page<DiscussionDTO> disscussionDTOS = discussionService.list(type ,pageable);
 
         //페이지 정보만들기
         int blockLimit = 10; //한페이지에 출력할 페이지 번호 갯수
@@ -41,11 +43,13 @@ public class DiscussionController {
 
         //값을 저장해서 전달
         //보낼데이터
+        model.addAttribute("type",type);
         model.addAttribute("discussionDTOS",disscussionDTOS);
         model.addAttribute("startPage",startPage);
         model.addAttribute("endPage",endPage);
         model.addAttribute("currentPage",currentPage);
         model.addAttribute("nextPage",nextPage);
+        model.addAttribute("prevPage",prevPage);
         model.addAttribute("lastPage",lastPage);
         return "discussion/list";
     }
