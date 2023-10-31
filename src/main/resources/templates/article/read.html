@@ -39,8 +39,10 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form action="/#">
-                        <input type="hidden" name="articleid" th:value="${articleDTO.id}">
+                    <form action="/comment/register" method="post">
+                        <!--name id =>댓글번호 articleid=>게시글번호 이미 사용중-->
+                        <!--댓글번호, 게시글번호 충돌방지를 위해 no로 선언-->
+                        <input type="hidden" name="no" th:value="${articleDTO.id}">
                         <div class="mb-3 mt-3">
                             <label for="body" class="form-label">댓글:</label>
                             <input type="text" class="form-control" id="body" name="body">
@@ -63,7 +65,10 @@
                     <div class="card-body">
                         <span th:text="${data.nickname}">닉네임</span> <br>
                         <span th:text="${data.body}">2</span><br>
-                        <span th:text="${#temporals.format(data.modDate, 'yyyy-MM-dd')}">3</span>
+                        <span th:text="${#temporals.format(data.modDate, 'yyyy-MM-dd')}">3</span><br>
+                        <!--게시글번호(상세보기), 댓글번호(삭제용)-->
+                        <button class="text-end" type="button"
+                                th:onclick="|location.href='@{/comment/remove(no=${articleDTO.id}, id=${data.id})}'|">삭제</button>
                     </div>
                 </div>
             </span>

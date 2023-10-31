@@ -32,7 +32,7 @@ public class CommentEntity extends BaseEntity{
     //부모, 자식 구분... 현재 테이블의 위치
     //현재위치 To 대상위치
     //현재댓글들은 하나의 게시글에 존재가 가능 (하나의 게시글에 여러개의 댓글 존재 그러니까 ManyToOne
-    @ManyToOne  //외래키
+    @ManyToOne(fetch = FetchType.LAZY)  //외래키 즉시 로딩과 지연로딩
     @JoinColumn(name = "article_id") //외래키는 joinColumn 사용
     private ArticleEntity articleEntity;    //해당참조 테이블을 선언
 

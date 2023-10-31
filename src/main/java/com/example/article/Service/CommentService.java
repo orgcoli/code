@@ -53,13 +53,13 @@ public class CommentService {
     }
 
     //댓글 삽입
-    public void insert(CommentDTO commentDTO)throws Exception{
+    public void insert(int id,CommentDTO commentDTO)throws Exception{
         //연관관계 부모 게시글 정보
-        Optional<ArticleEntity> data = articleRepository.findById(commentDTO.getArticleid());
+        Optional<ArticleEntity> data = articleRepository.findById(id);  //해당 게시글을 조회
         ArticleEntity articleEntity = data.orElseThrow();
 
         CommentEntity commentEntity = modelMapper.map(commentDTO, CommentEntity.class);
-
+        //ManyTOOne에 게시글 Entity에 내용을 저장해서 유효성처리
         commentEntity.setArticleEntity(articleEntity);
 
         commentRepository.save(commentEntity);
