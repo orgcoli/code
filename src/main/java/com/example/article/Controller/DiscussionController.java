@@ -30,11 +30,12 @@ public class DiscussionController {
         Page<DiscussionDTO> disscussionDTOS = discussionService.list(type ,pageable);
 
         //페이지 정보만들기
-        int blockLimit = 10; //한페이지에 출력할 페이지 번호 갯수
+        int blockLimit = 5;
+        //한페이지에 출력할 페이지 번호 갯수
         //시작페이지(int)->1회성 형변환 (캐스트연산자)
         int startPage= (((int)(Math.ceil((double)pageable.getPageNumber()/blockLimit)))-1) *blockLimit+1;
         //끝페이지
-        int endPage= Math.min(startPage+blockLimit+1, disscussionDTOS.getTotalPages());
+        int endPage= Math.min(startPage+blockLimit-1, disscussionDTOS.getTotalPages());
         //버튼정보
         int prevPage = disscussionDTOS.getNumber();
         int currentPage = disscussionDTOS.getNumber()+1;
