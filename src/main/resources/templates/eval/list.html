@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<!--디자인할때는 thymeleaf 헤더 추가-->
+<head>
+    <title>강의평가</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<div layout:fragment="content">
+
+    <div class="row mt-5" >
+        <div class="col-lg-2 col-sm-2 col-2" style="padding: 0;"></div>
+        <div class="col-lg-8 col-sm-8 col-8" style="padding: 0">
+
+            <!--검색, 등록하기버튼-->
+            <div class="mb-2">
+                    <form action="" method="get"><!--폼시작-->
+
+                        <div class="row">
+                            <div class="col-lg-2 col-sm-2 col-2" style="padding-right: 2px">
+                                <select class="form-select" name="type">
+                                    <option>전체</option>
+                                    <option value="p">교수명</option>
+                                    <option value="l">강의명</option>
+                                    <option value="e">제목</option>
+                                    <option value="pl">교수명+강의명</option>
+                                    <option value="ple">교수명+강의명+제목</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-5 col-sm-5 col-5" >
+                                <input type="text" class="form-control " name="keyword">
+                            </div>
+                            <div class="col-lg-4 col-sm-4 col-4"  style="padding: 2px">
+                                <button type="submit" class="btn btn-primary">검색</button>
+                                <button type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#insertModal">등록하기</button>
+                            </div>
+                        </div>
+
+
+                    </form><!--폼끝-->
+            </div>
+
+
+            <!--등록하기 모달 시작-->
+
+            <div class="modal" id="insertModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">평가 등록</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <form action="/eval-insert" method="post">    <!--등록폼-->
+                            <div class="modal-body">
+                                <div class="row mt-2 mb-3">
+                                    <div class="col-lg-6">
+                                            <label for="lname" class="form-label">강의명:</label>
+                                            <input type="text" class="form-control" id="lname" name="lname">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="pname" class="form-label">교수명:</label>
+                                        <input type="text" class="form-control" id="pname" name="pname">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-lg-4">
+                                        <label for="lyear" class="form-label">수강연도:</label>
+                                        <select class="form-select" id="lyear" name="lyear">
+                                            <option value="2023">2023</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
+                                            <option value="2018">2018</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="sdivide" class="form-label">수강학기:</label>
+                                        <select class="form-select" id="sdivide" name="sdivide">
+                                            <option value="1학기">1학기</option>
+                                            <option value="2학기">2학기</option>
+                                            <option value="가을학기">가을학기</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="ldivide" class="form-label">강의구분:</label>
+                                        <select class="form-select" id="ldivide" name="ldivide">
+                                            <option value="전공">전공</option>
+                                            <option value="교양">교양</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-lg-12">
+                                        <label for="etitle" class="form-label">제목:</label>
+                                        <input type="text" class="form-control" id="etitle" name="etitle">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-lg-12">
+                                        <label for="econtent" class="form-label">내용:</label>
+                                        <textarea id="econtent" name="econtent" class="form-control" rows="7"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-lg-3">
+                                        <label for="tscore" class="form-label">종합:</label>
+                                       <select class="form-select" id="tscore" name="tscore">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="F">F</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="gscore" class="form-label">성적:</label>
+                                        <select class="form-select" id="gscore" name="gscore">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="F">F</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="cscore" class="form-label">널널:</label>
+                                        <select class="form-select" id="cscore" name="cscore">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="F">F</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label for="lscore" class="form-label">강의:</label>
+                                        <select class="form-select" id="lscore" name="lscore">
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="F">F</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">등록하기</button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">취소</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--등록하기 모달 끝-->
+
+
+            <!--검색, 등록하기버튼 끝-->
+
+
+            <!--강의평가카드-->
+
+            <div class="card mb-2" style="padding: 0" th:each="data:${evalDTOS}">
+                <div class="card-header">
+                    <span th:text="${data.lname}">컴퓨터개론</span> &nbsp;<span th:text="${data.pname}">홍길동</span>
+                    <span style="float: right">종합 <span th:text="${data.tscore}" style="color: red">A</span></span>
+                </div>
+                <div class="card-body">
+                    <p>
+                        <span th:text="${data.etitle}" style="font-weight: bold;font-size: 18px">정말 좋은 강의에요.</span>
+                        (<span th:text="${data.lyear}">2017</span>년 <span th:text="${data.sdivide}">가을학기</span>)
+                    </p>
+                    <p th:text="${data.econtent}">
+                        강의가 많이 널널해서, ...
+                    </p>
+                    <p style="margin-bottom: 0">
+                        성적 <span th:text="${data.gscore}" style="color: red">A</span>
+                        널널 <span th:text="${data.cscore}" style="color: red">A</span>
+                        강의 <span th:text="${data.lscore}" style="color: red">B</span>
+                        <span style="color: green">(추천: [[${data.lcount}]])</span>
+                        <span style="float: right">
+                            <a href="/eval-update" style="text-decoration: none">추천</a>
+                            <a href="/eval-delete" style="text-decoration: none">삭제</a>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <!--강의평가카드 끝-->
+
+
+            <!--페이지-->
+
+            <ul class="pagination">
+                <!--startPage가 1번 페이지가 아니면 나타낸다-->
+                <li class="page-item" th:unless="${currentPage==1}">
+                    <a class="page-link" th:href="@{/eval-list(page=1, type=${type})}">첫페이지</a>
+                </li>
+
+                <li class="page-item" th:unless="${currentPage==1}">  <!--이전페이지 이동-->
+                    <a class="page-link" th:href="@{/eval-list(page=${prevPage}, type=${type})}">이전</a>
+                </li>
+
+                <span th:each="page:${#numbers.sequence(startPage, endPage)}">
+                    <li class="page-item" th:unless="${page==currentPage}"> <!--현재페이지가 아니면-->
+                        <a class="page-link" th:href="@{/eval-list(page=${page}, type=${type})}">[[${page}]]</a>
+                    </li>
+                    <li class="page-item active" th:if="${page==currentPage}"> <!--현재페이지 이면-->
+                        <a class="page-link" href="#">[[${page}]]</a>
+                    </li>
+                </span>
+
+                <li class="page-item" th:unless="${currentPage==lastPage}">  <!--다음페이지 이동-->
+                    <a class="page-link" th:href="@{/eval-list(page=${nextPage}, type=${type})}">다음</a>
+                </li>
+
+                <li class="page-item" th:unless="${currentPage==lastPage}">
+                    <a class="page-link" th:href="@{/eval-list(page=${lastPage}, type=${type})}">끝페이지</a>
+                </li>
+            </ul>
+
+            <!--페이지 끝-->
+
+
+        </div>
+        <div class="col-lg-2 col-sm-2 col-2" style="padding: 0;"></div>
+    </div>
+
+</div>
+
+
+</html>
