@@ -15,7 +15,7 @@ import javax.persistence.*;
 @SequenceGenerator(
         name = "member_SEQ",
         sequenceName = "member_SEQ",
-        initialValue = 1,
+        initialValue = 1 ,
         allocationSize = 1)
 public class MemberEntity extends BaseEntity{
     @Id

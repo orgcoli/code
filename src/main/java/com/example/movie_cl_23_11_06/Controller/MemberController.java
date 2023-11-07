@@ -43,7 +43,11 @@ public class MemberController {
         }
         try {
             memberService.saveMember(memberDTO);
-            redirectAttributes.addAttribute
+            redirectAttributes.addAttribute("errorMessage","가입을 성공 하였습니다.");
+        }catch(IllegalStateException e){
+            model.addAttribute("errorMessage", e.getMessage());
+            return "/member/register";
         }
+        return "redirect:/";
     }
 }
