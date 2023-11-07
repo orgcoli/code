@@ -25,18 +25,26 @@
                         <a class="nav-link" href="#">영화정보</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">영화정보 관리</a>
+                        <a class="nav-link" href="#" sec:authorize="hasRole('ADMIN')">영화정보 관리</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">회원관리</a>
+                        <a class="nav-link" href="#" sec:authorize="hasRole('ADMIN')">회원관리</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">로그인</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">로그인</a></li>
-                            <li><a class="dropdown-item" href="#">회원가입</a></li>
-                            <li><a class="dropdown-item" href="#">로그아웃</a></li>
+                            <li><a class="dropdown-item" href="/member/login"
+                                   sec:authorize="isAnonymous()">로그인</a></li>
+                            <li><a class="dropdown-item" href="/member/register"
+                                   sec:authorize="isAnonymous()">회원가입</a></li>
+                            <li><a class="dropdown-item" href="/member/logout"
+                                   sec:authorize="isAuthenticated()">로그아웃</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link" sec:authorize="isAuthenticated()">
+                            <span sec:authentication="name"></span>님 환영합니다.
+                        </a>
                     </li>
                 </ul>
             </div>
