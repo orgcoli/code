@@ -72,7 +72,7 @@ public class MovieController {
 
         model.addAttribute("list",list);
 
-        return "/movie/detail";
+        return "/admin/detail";
     }
 
     @GetMapping("/admin/update")
