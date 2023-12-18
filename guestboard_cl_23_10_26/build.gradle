@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '2.7.17'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //JPA(SQL처리) ->DSLQuery(SQL문을 수시로 변경 가능)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    //타임리프(HTML 에서 EL 처리)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    //DTO에서 검증처리
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    //DTO와 Entity에서 메소드 자동생성
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    //데이터베이스
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    //서버
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    //테스트
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    //맵퍼
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+    //레이아웃
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

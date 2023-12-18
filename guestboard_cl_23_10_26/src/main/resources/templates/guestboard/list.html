@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--작업페이지는 레이아웃을 가져와서 사용-->
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/guestlayout}">
+<head>
+    <title>GuestBoard</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row mt-3">   <!--행-->
+        <div class="col-lg-2"></div>    <!--여백-->
+        <div class="col-lg-8">  <!--작업공간-->
+            <h2>방명록 목록</h2>
+            <!--등록 영역-->
+            <button type="button" class="btn btn-primary"
+            onclick="location.href='/guestboard/register'">등록</button>
+            <!--등록 영역 끝-->
+
+
+            <!--검색 영역-->
+            <form th:action="@{/guestboard/list}" method="get">
+                <input type="hidden" name="page" value="1"> <!--페이지번호-->
+                <div class="row mt-2">
+                    <div class="col-lg-3">
+                        <select class="form-select"  name="type">
+                            <option th:selected="${type==null}">---------</option>
+                            <option value="t" th:selected="${type=='t'}">제목</option>
+                            <option value="c" th:selected="${type=='c'}">내용</option>
+                            <option value="w" th:selected="${type=='w'}">작성자</option>
+                            <option value="tc" th:selected="${type=='tc'}">재목+내용</option>
+                            <option value="tcw" th:selected="${type=='tcw'}">재목+내용+작성자</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" th:value="${keyword}" placeholder="찾을 내용을 입력하세요" name="keyword">
+                    </div>
+
+                    <div class="col-lg-3">
+                        <button type="submit" class="btn btn-primary">검색</button>
+                        <button type="reset" class="btn btn-secondary">지우기</button>
+                    </div>
+                </div>
+
+            </form>
+            <!--검색 영역 끝-->
+
+
+            <!--목록 영역-->
+            <div class="container mt-3">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="data:${lists}">
+                        <td th:text="${data.gno}">1</td>
+                        <td><a th:text="${data.title}" th:href="@{/guestboard/read(gno=${data.gno})}">연습</a></td>
+                        <td th:text="${data.writer}">홍길동</td>
+                        <td th:text="${#temporals.format(data.regDate, 'yyyy-MM-dd')}">2023-12-12</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--목록 영역 끝-->
+
+
+            <!--페이지 영역-->
+                    <ul class="pagination">
+                        <ul class="pagination mt-3" style="margin: 0 auto">                                 <!--검색페이지에서도 사용하려면 type, keyword 전달해야함.-->
+                            <li class="page-item"><a class="page-link" th:href="@{/guestboard/list(page=1, keyword=${keyword}, type=${type})}">처음</a></li>
+                                <li class="page-item" th:unless="${lists.number} == 0">
+                                    <a class="page-link" th:href="@{/guestboard/list(page=${lists.number}, keyword=${keyword}, type=${type})}">이전</a>
+                                </li>
+                            <span th:each ="page:${#numbers.sequence(startpage, endpage)}">
+                                <li class="page-item" th:unless="${page == lists.number+1}">
+                                    <a class="page-link" th:href="@{/guestboard/list(page=${page}, keyword=${keyword}, type=${type})}">[[${page}]]</a>
+                                </li>
+                                <li class="page-item active" th:if="${page == lists.number+1}">
+                                    <a class="page-link" href="#">[[${page}]]</a>
+                                </li>
+                            </span>
+                            <li class="page-item"><a class="page-link" th:href="@{/guestboard/list(page=${lists.number+2}, keyword=${keyword}, type=${type})}">다음</a></li>
+                            <li class="page-item"><a class="page-link" th:href="@{/guestboard/list(page=${lists.totalPages}, keyword=${keyword}, type=${type})}">끝</a></li>
+                        </ul>
+                    </ul>
+            <!--페이지 영역 끝-->
+        </div><!--col 끝-->
+        <div class="col-lg-2"></div>    <!--여백-->
+    </div>  <!--row 끝-->
+    <!--메세지 처리하는 대화상자(등록, 수정, 삭제 처리결과)-->
+    <!--메세지 처리하는 대화상자 끝-->
+</div>  <!--conntent끝-->
+</body>
+</html>
