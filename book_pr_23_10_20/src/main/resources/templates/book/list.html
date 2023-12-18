@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/booklayout}">
+
+<body>
+
+<div layout:fragment="content">
+    <div class="container mt-5">
+        <h2>책 목록</h2>
+        <table class="table table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>번호</th>
+                <th>분류코드</th>
+                <th>분류코드2</th>
+                <th>제목</th>
+                <th>저자</th>
+                <th>가격</th>
+                <th>상세보기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data:${lists}">
+                <td th:text="${data.bid}">1</td>
+                <td>[[${    data.bcode == 1 ? '교양':
+                            data.bcode == 2 ? '컴퓨터':
+                            data.bcode == 3 ? '소설':
+                            data.bcode == 4 ? '어학' : null}]]</td>
+                <td>
+                    <th:block th:switch="${data.bcode}">
+                    <span th:case="1">교양</span>
+                    <span th:case="2">컴퓨터</span>
+                    <span th:case="3">소설</span>
+                    <span th:case="4">어학</span>
+                    </th:block>
+                </td>
+                <td th:text="${data.bsub}">sample</td>
+                <td th:text="${data.bwriter}">샘플맨</td>
+                <td th:text="${data.bprice}">5000</td>
+                <td>
+                    <button type="button" class="btn btn-primary"
+                            th:onclick="|location.href='@{/book-detail(bid=${data.bid})}'|">상세보기</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
