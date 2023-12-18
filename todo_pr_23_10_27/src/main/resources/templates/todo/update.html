@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-6">
+                <h2>TODO 수정</h2>
+
+
+                <form th:action="@{/todo-update}" method="post" th:object="${data}">
+                    <input type="hidden" name="page" th:value="${page}" class="form-control" readonly>
+                    <div class="mb-3 mt-3">
+                        <label for="lid">번호:</label>
+                        <input type="number" class="form-control" th:field="*{lid}" id="lid" name="lid" readonly>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="ltitle">제목:</label>
+                        <input type="text" class="form-control" th:field="*{ltitle}" id="ltitle" name="ltitle">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lcontent">내용:</label>
+                        <textarea class="form-control" th:field="*{lcontent}" name="lcontent" id="lcontent" rows="5"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="limpt" class="form-label">중요도</label>
+                        <select class="form-select" id="limpt" name="limpt" th:field="*{limpt}">
+                            <option value="1">Low(낮음)</option>
+                            <option value="2">Medium(보통)</option>
+                            <option value="3">High(높음)</option>
+                        </select>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-lg-6">
+                            <div>
+                                <label for="fterm">시작기간:</label>
+                                <input type="date" class="form-control" th:field="*{fterm}" id="fterm" name="fterm">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div>
+                                <label for="lterm">마감기간:</label>
+                                <input type="date" class="form-control" th:field="*{lterm}" id="lterm" name="lterm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">수정</button>
+                    <button type="reset" class="btn btn-danger">초기화</button>
+                    <button type="button" class="btn btn-success" th:onclick="|location.href='@{/todo-list(page=${page})}'|">돌아가기</button>
+                </form>
+
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+
+    </div>
+
+</div>
+
+</html>
