@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/movielayout}">
+
+
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="card" style="width:400px">
+                <img class="card-img-top" th:src="|/images/item/@{${list.img}}|" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">제목 : <span th:text="${list.movie}"></span></h4>
+                    <p class="card-text"><span th:text="${list.content}"></span></p>
+                    <button class="btn btn-secondary">수정</button>
+                    <button class="btn btn-danger">삭제</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+</body>
+</html>

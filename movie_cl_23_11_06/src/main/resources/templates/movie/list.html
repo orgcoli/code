@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/movielayout}">
+
+
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+
+            <div class="container mt-3">
+                <h2>영화 정보</h2>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>이미지</th>
+                        <th>제목</th>
+                        <th>작성일</th>
+                        <th>상세보기</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="data:${movieDTOS}">
+                        <td th:text="${data.id}">1</td>
+                        <td><img th:src="|/images/item/@{${data.img}}|" width="150" height="100"></td>
+                        <td th:text="${data.movie}">테스트</td>
+                        <td th:text="${#temporals.format(data.regDate,'yyyy-MM-dd')}">2023-11-07</td>
+                        <td><button class="btn btn-dark" th:onclick="|location.href='@{#}'|">상세보기</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+</body>
+</html>

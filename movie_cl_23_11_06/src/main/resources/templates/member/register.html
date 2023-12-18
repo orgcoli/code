@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/movielayout}">
+
+<body>
+    <div layout:fragment="content">
+        <div class="row mt-4">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+               <div class="card">
+                   <div class="card-header">
+                       <h2>회원가입</h2>
+                   </div>
+                   <div class="card-body">
+                       <form action="/member/register" method="post" th:object="${memberDTO}">
+                           <div class="mb-3">
+                               <label for="email" class="form-label">이메일:</label>
+                               <input type="email" class="form-control" id="email" name="email" th:field="*{email}">
+                               <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+                           </div>
+                           <div class="mb-3">
+                               <label for="password" class="form-label">비밀번호:</label>
+                               <input type="password" class="form-control" id="password" name="password" th:field="*{password}">
+                               <p th:if="${#fields.hasErrors('password')}" class="text-danger" th:errors="*{password}"></p>
+                           </div>
+                           <div class="mb-3">
+                               <label for="name" class="form-label">이름:</label>
+                               <input type="name" class="form-control" id="name" name="name" th:field="*{name}">
+                               <p th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></p>
+                           </div>
+                           <button type="submit" class="btn btn-primary">회원가입</button>
+                       </form>
+                   </div>
+               </div>
+
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+
+        <!--script 시작-->
+
+        <!--script 끝-->
+
+    </div>
+</body>
+</html>
