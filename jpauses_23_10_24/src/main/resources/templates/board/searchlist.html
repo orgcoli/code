@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/boardlayout}">
+<head>
+    <title>jpauses</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container mt-3">
+        <h2>게시판목록</h2>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>조회수</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data:${lists}">
+                <td th:text="${data.id}">1</td>
+                <td th:text="${data.subject}">제목</td>
+                <td th:text="${data.username}">작성자</td>
+                <td th:text="${data.viewcnt}">조회수</td>
+                <td th:text="${#temporals.format(data.createdDate, 'yyyy-MM-dd')}">2023-03-12</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--form을 이용한 검색 기능-->
+        <form action="/searchlist" method="post">
+            <select class="form-select" name="gubun">
+                <option value="1">제목</option>
+                <option value="2">작성자</option>
+                <option value="3">제목+작성자</option>
+            </select>
+            <input type="text" class="form-control"  name="search">
+            <button type="submit" class="btn btn-primary"> 검색</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
+<!--서버에서 실행해서 레이아웃 적용을 확인(Controller 맵핑)-->
