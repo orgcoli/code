@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{layout/layout}">
+<div layout:fragment="content">
+    <div class="container mt-3 mb-5">
+        <h2>상품 목록</h2>
+        <a th:href="@{/productm-insert}">
+            <button type="button" class="btn btn-primary">등록</button>
+        </a>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>상품번호</th>
+                <th>상품이름</th>
+                <th>상품가격</th>
+                <th>상품수량</th>
+                <th>상품등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data:${lists}">
+                <td>
+                    <a th:href="@{/productm-view(pno=${data.pno})}">
+                        [[${data.pno}]]
+                    </a>
+                </td>
+                <td>[[${data.pname}]]</td>
+                <td>[[${data.pprice}]]</td>
+                <td>[[${data.pamount}]]</td>
+                <td>[[${#temporals.format(data.regdate, 'yyyy/MM/dd')}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>
