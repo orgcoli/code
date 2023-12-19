@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+
+            <div class="container mt-3">
+                <h2>게시물 등록</h2>
+                <form th:action="@{notes-insert}" method="post">
+                    <div class="mb-3 mt-3">
+                        <label for="title">제목:</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="type">주제:</label>
+                        <select class="form-select" id="type" name="type">
+                            <option value="1">컴퓨터</option>
+                            <option value="2">회계</option>
+                            <option value="3">상식</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="content">내용:</label>
+                        <textarea class="form-control" rows="5" id="content" name="content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">등록</button>
+                    <a th:href="@{/}">
+                        <button type="button" class="btn btn-primary">나가기</button>
+                    </a>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+
+</div>
+
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>

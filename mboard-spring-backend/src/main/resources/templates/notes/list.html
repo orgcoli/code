@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<div layout:fragment="content">
+    <div class="container mt-3">
+        <a th:href="@{/notes-insert}">
+            <button type="button" class="btn btn-primary">등록</button>
+        </a>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>주제</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="data:${notes}">
+                <td>    <!--munjebank참고하기-->
+                    <a th:href="@{notes-view(no=${data.no})}">
+                        [[${data.no}]]
+                    </a>
+                </td>
+                <th:block th:switch="${data.type}">
+                    <td th:case="1">컴퓨터</td>
+                    <td th:case="2">회계</td>
+                    <td th:case="3">상식</td>
+                </th:block>
+                <td>[[${data.title}]]</td>
+                <td>[[${data.content}]]</td>
+                <td>[[${#temporals.format(data.nregdate, 'yyyy/MM/dd')}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</html>
