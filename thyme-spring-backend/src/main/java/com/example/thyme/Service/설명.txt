@@ -1,0 +1,14 @@
+컨트롤에서 요청을 받아서 Repository(DAO+MyBatis)에 명령을 수행
+
+@Service    //해당클래스가 서비스 작업을 담당하는 클래스로 선언
+@Transactional  //오류발생시 수행이전의 요청한 곳으로 콜백(돌아간다)한다.
+@RequiredArgsConstructor //자동주입
+public class 서비스클래스명 {
+    private final 사용할레포시토리 변수명;
+
+    public 사용할Entity 메소드명(사용할Entity 변수명){
+        repository.save(entity);
+        repository.delete(1);
+        return 레포시토리.메소드(entity변수명) //데이터베이스 처리
+   }
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+일반변수를 전달받아서 출력<br>
+이름(name) :  <span th:text="${name}">홍길동</span><br>
+나이(age) : [[${age}]]   <br>
+주소(address) : <span th:text="${address}">부천시</span>   <br><br>
+
+오브젝트(sungjukDTO)를 전달받아서 출력<br>
+국어(kor) :  <span th:text="${sungjukDTO.kor}">90</span>  <br>
+영어(eng) :  <span th:text="${sungjukDTO.eng}">80</span>  <br>
+수학(mat) :  <span th:text="${sungjukDTO.mat}">70</span>  <br>
+</body>
+</html>

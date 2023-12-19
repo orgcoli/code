@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">    <!--타임리프 선언-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+$ { 변수명 } : 일반적인 변수 사용 <br>
+* { 변수명 } : object에 속한 변수(선택적 변수) data(오브젝트).name(변수) <br>
+# { 변수명 } : 메세지 표현식(DTO에서 message를 가져옴) - 오류메세지 처리 <br>
+@ { 변수명 } : URL주소처리 <br>
+~ {       } : layout을 사용하기 위해서 나누어진 페이지 연결 <br><br>
+
+데이터값을 출력하는 방법
+th : text : 열기태그와 닫기테그 사이에 값을 출력 <br>
+th : value : input 태그 등 value가 존재하는 태그에 value값에 출력 <br>
+[ [ $ { 변수명 } ] ] : 해당 위치에 직접 출력 <br>
+<hr>
+<h1> 컨텐츠에 데이터 출력하기</h1>
+<ul>
+    <li>th : text 사용(새로 적용) <span th:text="${data}">data값이 출력되는 위치</span></li>
+    <li>컨텐츠 안에 직접 출력하기(기존에 추가) = [[${data}]] </li>
+    <li><input type="text" value="초기설정값"></li>
+    <li><input type="text" th:value="${data}"></li>
+</ul>
+타임리프는 스프링이 구동된 후에 적용
+</body>
+</html>

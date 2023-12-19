@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+URL 주소연결할 때 action, a href, button onclick <br>
+@ { 주소 (변수 = 전달값) } 형식 <br>
+주소(매핑)에 ''포함 안한다.<br>
+오류발생 및 주소나 값이 변환이 안되면 | 앞뒤에 붙여준다. <br>
+<hr>
+<ul>
+    <li><a th:href="@{/hello}">기본 Url</a></li>
+    <li><a th:href="@{/hello(param1 = ${param1}, param2 = ${param2})}">변수값 전달</a></li>
+    <li><a th:href="@{/hello/{param1}/{param2}(param1 = ${param1}, param2 = ${param2})}">변수값 폴더 및 파일 적용</a></li>
+</ul>
+</body>
+</html>
+
+<<!--div th:each="data:${lists}">
+    <div class="row" 연산으로 12칸 판별>   &lt;!&ndash;12칸&ndash;&gt;
+        <div class="col-sm-3">출력</div>
+    </div>
+</div>-->

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+xmlns:th = "http://www.thymeleaf.org"
+xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--공통적인 스타일시트, 자바스크립트, 부트스트립 배치-->
+</head>
+<body>
+<!--레이아웃은 상황에 맞춰서 여러개 생성이 가능-->
+    <!--header영역-->
+    <!--해당 조각파일을 머리글로 사용-->
+    <div th:replace="frgment/header::header"></div>
+
+    <!--content(본문)영역-->
+    <!--각페이지의 내용으로 변경처리-->
+    <div layout:fragment="content" class="content"></div>
+
+    <!--footer영역-->
+    <div th:replace="frgment/footer::footer"></div>
+</body>
+</html>

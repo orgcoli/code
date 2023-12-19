@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>조건문</title>
+</head>
+<body>
+if문을 이용해서 조건에 맞는 작업을 처리 <br>
+th:if=${조건식} 조건을 만족하면 처리 <br>
+th:unless=${조건식} else문과 비슷, 조건을 만족하지 않으면 처리 <br>
+if문을 대체 가능한 명령이 th:switch문 <br>
+th:switch=${변수} <br>
+    th:case="비교값" <br>
+    th:case="비교값" <br>
+    th:case="비교값" <br>
+    th:case="*" 해당하는 값없음 => default <br>
+<h1>if문 처리</h1>
+<table border="1">
+    <thead> <!--제목행-->
+    <tr>
+        <th>일련번호</th>
+        <th>사용자이름</th>
+        <th>나이</th>
+        <th>상태</th>
+    </tr>
+    </thead>
+    <tbody> <!--본문-->
+    <!--user는 users의 목록값을 단일값으로 저장, userstat은 each의 상태값을 저장-->
+    <tr th:each="user, userStat:${users}">
+        <td th:text="${userStat.count}">id</td>
+        <td th:text="${user.userName}">홍길동</td>
+        <td th:text="${user.age}">27</td>
+        <td>
+            age = <span th:text="${user.age}">20</span> <br>
+            <!--&gt;(gt),<(lt),>=(ge),<=(le),==(eq),!=(ne) 조건이 인식이 안될 경우 발생, 단어로 사용하는 것이 좋음-->
+            if문이 있는 태그 전체가 사용 및 미사용 처리 <br>
+            나이가 20보다 작으면 미성년자 출력 <br>
+            ${user.age lt 20} = <span th:text="미성년자" th:if="${user.age lt 20}"></span><br>
+            나이가 20보다 크지 않으면 미성년자 출력 <br>
+            ${user.age ge 20} = <span th:text="미성년자" th:unless="${user.age ge 20}"></span><br>
+            나이가 20보다 크거나 같으면 <br>
+            ${user.age ge 20} = <span th:text="미성년자" th:if="${user.age ge 20}"></span><br>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<h1>switch문 처리</h1>
+<table border="1">
+    <thead> <!--제목행-->
+    <tr>
+        <th>일련번호</th>
+        <th>사용자이름</th>
+        <th>나이</th>
+    </tr>
+    </thead>
+    <tbody> <!--본문-->
+    <!--user는 users의 목록값을 단일값으로 저장, userstat은 each의 상태값을 저장-->
+    <tr th:each="user, userStat:${users}">
+        <td th:text="${userStat.count}">id</td>
+        <td th:text="${user.userName}">홍길동</td>
+        <td th:switch="${user.age}">
+            <span th:case="10">10살</span>
+            <span th:case="20">20살</span>
+            <span th:case="*">기타</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,23 @@
+데이터베이스 구동하기 위한 메소드(SQL문)으로 구성
+Service에서 요청한 데이터베이스 처리를 동작(Insert, Update, Delete, Select)
+
+public interface Repository클래스명 extends JpaRepository<사용할 Entity명, 기본키의 데이터형> {
+    public 사용자메소드(입력받은 값,.....);
+
+    jpa가 사용자메소드명을 분석해서 자동으로 프로그램을 완성
+    find+사용할Entity명(생략가능)+By+이용할필드명
+    findMemberByName(String name);
+            Member테이블에서 Name필드에 name에 값과 같은 레코드를 조회
+    Mybatis방식 : Select * from Member Where Name = #{name}
+    findMemberByIdAndPassword(String id, String password);
+            Member테이블에서 id와 비밀번호가 일치하는 레코드를 조회
+    Mybatis방식 : Select * from Member Where id=#{id} and password=#{password}
+}
+
+[Repository에서 기본 제공하는 메소드]
+save(Entity값) : 저장 또는 수정
+delete(기본키에 대한 값) : 삭제
+findByOne(기본키에 대한 값) : 1개 조회
+findAll() : 모든 자료를 조회
+count : 총 레코드의 개수 페이지수 관련
+

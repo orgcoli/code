@@ -1,0 +1,27 @@
+1. 클라이언트와 연동
+2. Service를 이용
+
+@Controller //해당클래스가 Controller을 작업 선언
+@RequiredArgsConstructor //자동주입처리 @Autowired 대체
+
+@Mapping("/공통폴더만") //브라우저에서 요청이 들어오면 처리
+public class 클래스 {
+        주입할 클래스를 선언
+        @Autowired  //@RequiredArgsConstructor선언시 생략가능
+        서비스클래스명 변수명;
+
+        @GetMapping("/폴더/매핑명")      //일반적으로 접근요청(기본)
+        @PostMapping("/폴더/매핑명")     //삽입처리 요청(수정, 삭제)
+        @PutMapping("/폴더/매핑명")      //수정처리요청
+        @DeleteMapping("/폴더/매핑명")   //삭제처리 요청
+        public String 메소드명 (전달받은 변수나 오브젝트(DTO) - 받을값이 있을 경우,
+                                Model model= 보낼값이 있을 경우){
+
+                //데이터베이스 처리를 위한 서비스 작업
+
+                model.addAttribute("전달할 변수명", 값); //보낼값이 있을 경우
+                model.addObject("전달할 변수명", DTO);
+
+                return "HTML파일명";
+        }
+}

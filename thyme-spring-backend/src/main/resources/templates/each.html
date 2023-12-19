@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>반복문</title>
+</head>
+<body>
+목록작업시 반드시 사용해야 한다. <br>
+for(i=0; i<10; i++)자바형식 <br>
+목록을 반복처리 <br>
+foreach(변수명:목록명) 목록(List, Map, 배열)을 반복 <br>
+==>Thymeleaf에서는<br>
+th:each="변수명 상태변수:목록명" <br>
+상태변수.index : 현재 위치(0부터 시작) <br>
+count : 현재 위치(1부터 시작) <br>
+size : 총 항목개수 <br>
+current : 현재 항목 <br>
+even : 반복이 짝수행인지 판별 <br>
+odd : 반복이 홀수행인지 판별 <br>
+first : 첫번째 항목 <br>
+last : 마지막 항목 <br>
+<!--반복문 ul, table, card, 베너-->
+<table border="1">
+    <thead> <!--제목행-->
+        <tr>
+            <th>일련번호</th>
+            <th>사용자이름</th>
+            <th>나이</th>
+            <th>상태</th>
+        </tr>
+    </thead>
+    <tbody> <!--본문-->
+        <!--user는 users의 목록값을 단일값으로 저장, userstat은 each의 상태값을 저장-->
+        <tr th:each="user, userStat:${users}">
+            <td th:text="${userStat.count}">id</td>
+            <td th:text="${user.userName}">홍길동</td>
+            <td th:text="${user.age}">27</td>
+            <td>
+                index = [[${userStat.index}]] <br>
+                count = <span th:text="${userStat.count}"></span>,
+                size = <span th:text="${userStat.size}"></span>,
+                current = <span th:text="${userStat.current}"></span>,
+                first = <span th:text="${userStat.first}"></span>,
+                last = <span th:text="${userStat.last}"></span>,
+                even = <span th:text="${userStat.even}"></span>,
+                odd = <span th:text="${userStat.odd}"></span>,
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

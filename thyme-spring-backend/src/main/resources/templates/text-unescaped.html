@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+text는 전달받은 값을 일반 문자열을 처리<br>
+utext(unescaped)는 전달받은 값을 태그가 있으면 태그로 적용<br>
+sample="< b >정답입니다.< /b >" 서버에서 전달했을 때<br>
+text "< b >정답입니다.< /b >"<br>
+utext < b >"정답입니다"< /b ><br><br>
+<hr>
+<h1> text와 utext 비교</h1>
+<ul>
+    <li>th:text=<span th:text="${data}"></span></li>
+    <li>th:utext=<span th:utext="${data}"></span></li>
+</ul>
+<br>
+t h : inline에서 none은 해당 태그에 타임리프를 적용하지 않는다.
+
+<h1><span th:inline="none">[[,,,]] 와 [(...)] 비교</span></h1>
+<ul>
+    <li><span th:inline="none">[[...]]</span>[[${data}]]</li>
+    <li><span th:inline="none">[(...)]</span>[(${data})]</li>
+</ul>
+</body>
+</html>
