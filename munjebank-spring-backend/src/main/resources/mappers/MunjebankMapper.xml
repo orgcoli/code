@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace는 사용할 DAO 위치와 이름으로 지정-->
+<!--CRUD - CREATE, READ, UPDATE, DELETE-->
+<mapper namespace="com.kakao.munjebank.DAO.MunjeDAO">
+    <!--관리자에서 문제 목록 조회처리-->
+    <!--JPA 데이터베이스 관련 id, 메소드는 find클래스명 By 사용할변수-->
+    <select id="findSelectAll" resultType="MunjeVO">
+        SELECT * FROM munje_tbl
+    </select>
+    <!--사용자가 응시과목을 선택헀을 때 조회처리-->
+    <select id="findSelectBySubject" parameterType="String" resultType="MunjeVO">
+        SELECT * FROM munje_tbl WHERE subject=#{subject}
+    </select>
+    <!--저장처리 앞()와 뒤()에 개수가 동일하게-->
+    <insert id="save" parameterType="MunjeVO">
+        INSERT INTO munje_tbl (subject, question, item1, item2, item3, item4, answer)
+        VALUES (#{subject}, #{question}, #{item1}, #{item2}, #{item3}, #{item4}, #{answer});
+    </insert>
+    <!--수정할 번호에 대한 조회처리-->
+    <select id="findSelectByNo" parameterType="int" resultType="MunjeVO">
+        SELECT * FROM munje_tbl WHERE no=#{no}
+    </select>
+
+    <update id="update" parameterType="MunjeVO">
+        UPDATE munje_tbl SET subject=#{subject},
+                             question=#{question},
+                             item1=#{item1},
+                             item2=#{item2},
+                             item3=#{item3},
+                             item4=#{item4},
+                             answer=#{answer}
+                             WHERE no=#{no}
+    </update>
+    <!--삭제처리-->
+    <delete id="deleteByNo" parameterType="int">
+        DELETE FROM munje_tbl WHERE no=#{no}
+    </delete>
+</mapper>
